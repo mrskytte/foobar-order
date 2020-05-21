@@ -1,14 +1,72 @@
 {
-  "beers": [
-    { "name": "El Hefe", "desc": "", "alc": "" },
-    { "name": "Fairy Tale Ale" },
-    { "name": "GitHop" },
-    { "name": "Hollaback Lager" },
-    { "name": "Hoppily Ever After" },
-    { "name": "Mowintime" },
-    { "name": "Row 26" },
-    { "name": "Ruined Childhood" },
-    { "name": "Sleighride" },
-    { "name": "Steampunk" }
-  ]
+  "El Hefe": {
+    "name": "El Hefe",
+    "desc": "Contains flavors derived from flowers, roots, seeds or certain fruits or vegetables.\nThe hop character is low, allowing the added ingredient to shine through.\nThe appearance, mouthfeel and aromas is filled with the ingredients.\nThis beer style encompasses innovative examples as well as traditional holiday and winter ales.",
+    "alc": "5.2",
+    "type": "Herb & Spice Lager",
+    "price": "50"
+  },
+  "Fairy Tale Ale": {
+    "name": "Fairy Tale Ale",
+    "desc": "This fruit lambic takes on the color and flavor of cherries.\nIt's sweet & cloudy. Light notes of Brettanomyces yeast are present. Sourness is an important part of it's flavor profile, though the sweetness diminishes the perceived intensity.",
+    "alc": "7.0",
+    "type": "Fruit Lambic",
+    "price": "65"
+  },
+  "GitHop": {
+    "name": "GitHop",
+    "desc": "This English-style pale ale is characterized by a hearty helping of English hop character (earthy, floral) and increased alcohol content.\nEnglish yeast lend a fruity character to the flavor and aroma, offering a contrast to the earthy English hop additions. Different from its American counterpart, this style strikes a balance between malt and hops for a more rounded flavor",
+    "alc": "6.0",
+    "type": "English IPA",
+    "price": "55"
+  },
+  "Hollaback Lager": {
+    "name": "Hollaback Lager",
+    "desc": "This craft beer showcases both malt and hops.\nThis Amber lager is a medium-bodied lager with a toasty or caramel-like malt character. It has medium hop bitterness.\nThe brewers have used decoction mash and dry-hopping to achieve advanced flavors.",
+    "alc": "4.8",
+    "type": "American Amber Lager",
+    "price": "45"
+  },
+  "Hoppily Ever After": {
+    "name": "Hoppily Ever After",
+    "desc": "This American barley wine is amber in color. A caramel and/or toffee aroma and flavor is part of the malt character along with high residual malty sweetness.\nComplexity of alcohols is evident. Fruity-ester character is quite high.\nAs with many American versions of a style, this barley wine ale is more hop-forward and bitter than its U.K. counterpart.\nLow levels of age-induced oxidation can harmonize with other flavors and enhance the overall experience.",
+    "alc": "11.8",
+    "type": "American Barley Wine",
+    "price": "75"
+  },
+  "Mowintime": {
+    "name": "Mowintime",
+    "desc": "This Belgian-style witbier is brewed using unmalted wheat, oats and malted barley.\nIt's spiced with coriander and orange peel.\nThis style dates back hundreds of years, it fell into relative obscurity until it was revived by Belgian brewer Pierre Celis in the 1960s.\nThis style is currently enjoying a renaissance.",
+    "alc": "4.8",
+    "type": "Belgian Witbier",
+    "price": "50"
+  },
+  "Row 26": {
+    "name": "Row 26",
+    "desc": "This beer is brewed using malted sorghum and buckwheat, which are grains that do not contain gluten to brew beers.\nAn easy-drinking, hazy pale ale that offers bright citrus flavors, which are complemented by subtle tropical and stone fruit notes.",
+    "alc": "4.2",
+    "type": "Gluten-free Pale Ale",
+    "price": "60"
+  },
+  "Ruined Childhood": {
+    "name": "Ruined Childhood",
+    "desc": "This ale is brewed with honey. Overall the character of honey is evident but not totally overwhelming.",
+    "alc": "4.2",
+    "type": "Honey Ale",
+    "price": "50"
+  },
+  "Sleighride": {
+    "name": "Sleighride",
+    "desc": "When you cannot get enough of Christmas, you take a ton of the best, classic Danish Christmas ingredients and brew a Berliner Weisse!\nA Berliner Weisse with Cherries, Redcurrant and Prunes.",
+    "alc": "8.1",
+    "type": "Berliner Weisse",
+    "price": "65"
+  },
+  "Steampunk": {
+    "name": "Steampunk",
+    "desc": "This smoke porter is given smoky depth thanks to oak-smoked malt, which lends flavors to the finished product.\nSmoke flavors dissipate over time.",
+    "alc": "8.9",
+    "type": "Smoke Porter",
+    "price": "65"
+  }
 }
