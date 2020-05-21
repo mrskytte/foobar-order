@@ -1,0 +1,14 @@
+{
+  "beers": [
+    { "name": "El Hefe", "desc": "", "alc": "" },
+    { "name": "Fairy Tale Ale" },
+    { "name": "GitHop" },
+    { "name": "Hollaback Lager" },
+    { "name": "Hoppily Ever After" },
+    { "name": "Mowintime" },
+    { "name": "Row 26" },
+    { "name": "Ruined Childhood" },
+    { "name": "Sleighride" },
+    { "name": "Steampunk" }
+  ]
+}
