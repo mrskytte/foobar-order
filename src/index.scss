@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.card-element {
+  border: 1px solid black;
+  display: grid;
+  grid-template-areas:
+    "img title"
+    "img alc"
+    "img price";
+  img {
+    grid-area: img;
+  }
+  .alc {
+    grid-area: alc;
+  }
+  .price {
+    grid-area: price;
+  }
+}
