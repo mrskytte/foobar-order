@@ -3,6 +3,7 @@ import Card from "./Card";
 import beers from "./beers.json";
 import Button from "./Button";
 import Checkout from "./Checkout";
+import OrderSummary from "./orderSummary";
 
 const endpoint = "https://fireoranges.herokuapp.com";
 
@@ -17,21 +18,44 @@ export default function Main(props) {
       const data = await fetch(endpoint);
       const response = await data.json();
       const onTap = Object.values(response.taps);
-      let test = [];
+      let taps = [];
       onTap.forEach((oneTap) => {
-        test.push(oneTap.beer);
+        taps.push(oneTap.beer);
       });
       beersOnTap = beersArray.filter((beer) => {
-        if (test.includes(beer[0])) {
+        if (taps.includes(beer[0])) {
           return beer;
         }
-        return;
       });
       setCards(beersOnTap);
     }
   }, []);
 
-  cardsInUse = cards.map((c) => <Card {...c} key={c[0]} />);
+  const [beersInOrder, setBeersInOrder] = useState([]);
+
+  function addBeerToOrder(beer, amount) {
+    let newOrder = "";
+    if (beersInOrder.some((oneOrder) => oneOrder.name === beer)) {
+      newOrder = beersInOrder.map((oneOrder) => {
+        if (oneOrder.name === beer) {
+          return { name: oneOrder.name, amount: amount };
+        } else {
+          return { name: oneOrder.name, amount: oneOrder.amount };
+        }
+      });
+    } else {
+      newOrder = beersInOrder.concat({ name: beer, amount: amount });
+    }
+    setBeersInOrder(newOrder);
+  }
+
+  cardsInUse = cards.map((c) => (
+    <Card {...c} key={c[0]} addBeerToOrder={addBeerToOrder} />
+  ));
+
+  function goToOrder() {
+    console.log("lets order");
+  }
 
   return (
     <main>
@@ -41,6 +65,15 @@ export default function Main(props) {
         <Button name="POPULAR" />
       </div>
       {cardsInUse}
+      {beersInOrder.length > 0 ? (
+        <OrderSummary
+          beersInOrder={beersInOrder}
+          beerInfo={beersArray}
+          goToOrder={goToOrder}
+        />
+      ) : (
+        console.log("noOrder")
+      )}
       <Checkout />
     </main>
   );

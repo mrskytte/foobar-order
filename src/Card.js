@@ -35,6 +35,7 @@ export default function Card(props) {
   function changeAmount(value) {
     let newValue = amount + 1 * value;
     setAmount(newValue);
+    props.addBeerToOrder(beerInfo.name, newValue);
   }
 
   const [open, setOpen] = useState(false);
