@@ -8,10 +8,9 @@ const endpoint = "https://fireoranges.herokuapp.com";
 
 export default function Main(props) {
   const beersArray = Object.entries(beers);
-  let beersOnTap = "";
-
   const [cards, setCards] = useState([]);
-
+  let beersOnTap = "";
+  let cardsInUse = [];
   useEffect(() => {
     fetchData();
     async function fetchData() {
@@ -32,8 +31,8 @@ export default function Main(props) {
     }
   }, []);
 
-  console.log("hello");
-  const cardsInUse = cards.map((c) => <Card {...c} key={c[0]} />);
+  cardsInUse = cards.map((c) => <Card {...c} key={c[0]} />);
+
   return (
     <main>
       <h1 className="main-title">ON TAP TODAY</h1>
