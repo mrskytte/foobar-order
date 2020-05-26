@@ -11,21 +11,106 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+$primaty-color: #fffdf0;
+$secondary-color: #2a2723;
+$accent: #f0621f;
+$grey: #bab3b5;
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+  height: 10vh;
+  background-color: $secondary-color;
+  img {
+    height: 100%;
+  }
+}
 
 .card-element {
   border: 1px solid black;
   display: grid;
   grid-template-areas:
-    "img title"
-    "img alc"
-    "img price";
+    "numberofbeer img title"
+    "numberofbeer img alc"
+    "numberofbeer img price";
+  grid-template-columns: 10% 1fr 1fr;
   img {
     grid-area: img;
+    width: 90%;
+  }
+  .number-of-beers {
+    visibility: hidden;
+    width: 0;
+  }
+  &.beers-added {
+    .number-of-beers {
+      visibility: visible;
+      width: auto;
+      grid-area: numberofbeer;
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-right: 3px solid $accent;
+      padding-right: 5px;
+    }
   }
   .alc {
     grid-area: alc;
   }
   .price {
     grid-area: price;
+  }
+  .desc,
+  .add-beer {
+    display: none;
+  }
+  &.open-menu {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "img img"
+      "title price"
+      "alc addbeer"
+      "desc desc";
+    .desc,
+    .add-beer {
+      display: inline;
+      animation: openMenu 1s ease-in forwards;
+    }
+    .desc {
+      grid-area: desc;
+    }
+    .add-beer {
+      grid-area: addbeer;
+      display: flex;
+    }
+    img {
+      margin: auto;
+      animation: openImg 0.5s ease forwards;
+    }
+  }
+}
+
+@keyframes openMenu {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+    height: 100%;
+  }
+}
+
+@keyframes openImg {
+  from {
+    transform: translateX(-50%);
+    width: 40%;
+  }
+  to {
+    transform: translateX(0);
+    width: 60%;
   }
 }
