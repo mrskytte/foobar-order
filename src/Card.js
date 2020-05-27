@@ -9,6 +9,7 @@ import row26 from "./assets/mockups/row26.png";
 import ruinedchildhood from "./assets/mockups/ruinedchildhood.png";
 import sleighride from "./assets/mockups/sleighride.png";
 import steampunk from "./assets/mockups/steampunk.png";
+import AddButton from "./AddButton";
 
 export default function Card(props) {
   const imgArray = [
@@ -31,7 +32,9 @@ export default function Card(props) {
       .join(" ");
   }
 
-  const [amount, setAmount] = useState(0);
+  const initialAmount = parseInt(beerInfo.amount);
+
+  const [amount, setAmount] = useState(initialAmount);
   function changeAmount(value) {
     let newValue = amount + 1 * value;
     setAmount(newValue);
@@ -47,7 +50,7 @@ export default function Card(props) {
     "card-element": true,
     "beers-ordered": beerInfo.beersOrdered > 0,
     "open-menu": open,
-    "beers-added": amount > 0,
+    "beers-added": beerInfo.amount > 0,
   };
 
   const myClassNames = classNames(classes);
@@ -57,27 +60,36 @@ export default function Card(props) {
       return image;
     }
   });
+  console.log(beerInfo);
 
   return (
-    <article id={beerInfo.name} className={myClassNames} onClick={openDesc}>
-      <div className="number-of-beers">
-        <p>{amount} x </p>
-      </div>
-      <img src={thisImage[0].value} alt="Beer" />
-      <h2>{beerInfo.name}</h2>
-      <p className="alc">
-        {beerInfo.alc}%, 0.5l{" "}
-        <span>{beerInfo.popular === "true" ? "⭐" : ""}</span>
-      </p>
-      <p className="price">{beerInfo.price}kr </p>
-      <p className="desc">{beerInfo.desc}</p>
-      <div className="add-beer">
-        <button disabled={amount === 0} onClick={() => changeAmount("-1")}>
-          -
-        </button>
-        <p>{amount}</p>
-        <button onClick={() => changeAmount("1")}>+</button>
-      </div>
-    </article>
+    <>
+      {props.isCheckingOut && beerInfo.amount > 0 ? (
+        <tr>
+          <td>{beerInfo.name}</td>
+          <td>{beerInfo.price}</td>
+          <td>
+            <AddButton changeAmount={changeAmount} amount={beerInfo.amount} />
+          </td>
+        </tr>
+      ) : props.isCheckingOut ? (
+        console.log("show nothing")
+      ) : (
+        <article id={beerInfo.name} className={myClassNames} onClick={openDesc}>
+          <div className="number-of-beers">
+            <p>{beerInfo.amount} x </p>
+          </div>
+          <img src={thisImage[0].value} alt="Beer" />
+          <h2>{beerInfo.name}</h2>
+          <p className="alc">
+            {beerInfo.alc}%, 0.5l{" "}
+            <span>{beerInfo.popular === "true" ? "⭐" : ""}</span>
+          </p>
+          <p className="price">{beerInfo.price}kr </p>
+          <p className="desc">{beerInfo.desc}</p>
+          <AddButton changeAmount={changeAmount} amount={beerInfo.amount} />
+        </article>
+      )}
+    </>
   );
 }

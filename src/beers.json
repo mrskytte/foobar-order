@@ -6,7 +6,8 @@
     "type": "Herb & Spice Lager",
     "price": "50",
     "popular": "true",
-    "image": "elhefe"
+    "image": "elhefe",
+    "amount": "0"
   },
   "Fairy Tale Ale": {
     "name": "Fairy Tale Ale",
@@ -15,7 +16,8 @@
     "type": "Fruit Lambic",
     "price": "65",
     "popular": "false",
-    "image": "bigdaddy"
+    "image": "bigdaddy",
+    "amount": "0"
   },
   "GitHop": {
     "name": "GitHop",
@@ -24,7 +26,8 @@
     "type": "Gluten-free Pale Ale",
     "price": "60",
     "popular": "false",
-    "image": "githop"
+    "image": "githop",
+    "amount": "0"
   },
   "Hollaback Lager": {
     "name": "Hollaback Lager",
@@ -33,7 +36,8 @@
     "type": "American Amber Lager",
     "price": "45",
     "popular": "true",
-    "image": "hollaback"
+    "image": "hollaback",
+    "amount": "0"
   },
   "Hoppily Ever After": {
     "name": "Hoppily Ever After",
@@ -42,7 +46,8 @@
     "type": "Belgian IPA",
     "price": "75",
     "popular": "false",
-    "image": "hoppilyeverafter"
+    "image": "hoppilyeverafter",
+    "amount": "0"
   },
   "Mowintime": {
     "name": "Mowintime",
@@ -51,7 +56,8 @@
     "type": "Bohemian-style Pilsner",
     "price": "50",
     "popular": "false",
-    "image": "mowingtime"
+    "image": "mowingtime",
+    "amount": "0"
   },
   "Row 26": {
     "name": "Row 26",
@@ -60,7 +66,8 @@
     "type": "Milk Stout",
     "price": "50",
     "popular": "false",
-    "image": "row26"
+    "image": "row26",
+    "amount": "0"
   },
   "Ruined Childhood": {
     "name": "Ruined Childhood",
@@ -69,7 +76,8 @@
     "type": "Red Porter",
     "price": "65",
     "popular": "true",
-    "image": "ruinedchildhood"
+    "image": "ruinedchildhood",
+    "amount": "0"
   },
   "Sleighride": {
     "name": "Sleighride",
@@ -78,7 +86,8 @@
     "type": "Imperial Porter",
     "price": "65",
     "popular": "false",
-    "image": "sleighride"
+    "image": "sleighride",
+    "amount": "0"
   },
   "Steampunk": {
     "name": "Steampunk",
@@ -87,6 +96,7 @@
     "type": "California IPA",
     "price": "50",
     "popular": "false",
-    "image": "steampunk"
+    "image": "steampunk",
+    "amount": "0"
   }
 }

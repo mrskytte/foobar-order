@@ -1,9 +1,12 @@
 import React from "react";
 
 export default function button(props) {
+  function buttonClicked() {
+    props.callback();
+  }
   return (
     <>
-      <button>{props.name}</button>
+      <button onClick={buttonClicked}>{props.name}</button>
     </>
   );
 }

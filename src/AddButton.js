@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 
-export default function AddButton() {
-  const [amount, setAmount] = useState(0);
-  function changeAmount(value) {
-    let newValue = amount + 1 * value;
-    setAmount(newValue);
-  }
+export default function AddButton(props) {
   return (
     <div className="add-beer">
-      <button disabled={amount === 0} onClick={() => changeAmount("-1")}>
+      <button
+        disabled={props.amount === 0}
+        onClick={() => props.changeAmount("-1")}
+      >
         -
       </button>
-      <p>{amount}</p>
-      <button onClick={() => changeAmount("1")}>+</button>
+      <p>{props.amount}</p>
+      <button onClick={() => props.changeAmount("1")}>+</button>
     </div>
   );
 }
