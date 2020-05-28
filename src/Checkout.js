@@ -5,7 +5,6 @@ export default function Checkout(props) {
   return (
     <main>
       <h1>ORDER SUMMARY</h1>
-      <button onClick={props.cancelOrder}>X</button>
       <table>
         <thead>
           <tr>

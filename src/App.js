@@ -17,6 +17,7 @@ export default function App(props) {
   const [sortingStatus, setSortingStatus] = useState(null);
   const [isCheckingOut, setCheckingOut] = useState(false);
   const [isPaying, setIsPaying] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("");
 
   let cardsInUse = [];
   let beersOnTap = useRef("");
@@ -130,8 +131,20 @@ export default function App(props) {
     setIsPaying(true);
   }
 
+  function setPayment(method) {
+    setPaymentMethod(method);
+  }
+
   function cancelOrder() {
     setCheckingOut(false);
+  }
+
+  function cancelPayment() {
+    setIsPaying(false);
+  }
+
+  function cancelPaymentMethod() {
+    setPaymentMethod("");
   }
 
   async function postOrder() {
@@ -157,7 +170,14 @@ export default function App(props) {
 
   return (
     <div className="App">
-      <Header isCheckingOut={isCheckingOut} isPaying={isPaying} />
+      <Header
+        isCheckingOut={isCheckingOut}
+        isPaying={isPaying}
+        cancelOrder={cancelOrder}
+        cancelPayment={cancelPayment}
+        cancelPaymentMethod={cancelPaymentMethod}
+        paymentMethod={paymentMethod}
+      />
       <main>
         {!isCheckingOut ? (
           <>
@@ -181,9 +201,13 @@ export default function App(props) {
             {cardsInUse}
           </>
         ) : isPaying ? (
-          <Payment postOrder={postOrder} />
+          <Payment
+            postOrder={postOrder}
+            setPayment={setPayment}
+            paymentMethod={paymentMethod}
+          />
         ) : (
-          <Checkout cards={cardsInUse} cancelOrder={cancelOrder} />
+          <Checkout cards={cardsInUse} />
         )}
 
         {isPaying ? (
