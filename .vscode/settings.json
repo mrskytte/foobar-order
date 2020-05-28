@@ -1,6 +1,8 @@
 {
-    "cSpell.words": [
-        "Hefe",
-        "lambic"
-    ]
+  "cSpell.words": ["Hefe", "lambic"],
+  "emmet.excludeLanguages": ["markdown"],
+
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  }
 }

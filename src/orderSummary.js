@@ -14,8 +14,12 @@ export default function OrderSummary(props) {
   });
 
   return (
-    <button id="order-summary" onClick={props.goToOrder}>
-      CONFIRM<span>TOTAL {total}kr</span>
+    <button
+      id="order-summary"
+      onClick={props.isCheckingOut ? props.goToPayment : props.goToOrder}
+    >
+      {props.isCheckingOut ? "CONFIRM" : "CHECKOUT"}
+      <span>TOTAL {total}kr</span>
     </button>
   );
 }
