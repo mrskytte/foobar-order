@@ -55,11 +55,7 @@ export default function Card(props) {
 
   const myClassNames = classNames(classes);
 
-  const thisImage = imgArray.filter((image) => {
-    if (image.name === beerInfo.image) {
-      return image;
-    }
-  });
+  const thisImage = imgArray.filter((image) => image.name === beerInfo.image);
 
   return (
     <>

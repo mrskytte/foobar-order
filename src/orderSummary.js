@@ -3,11 +3,9 @@ import React from "react";
 export default function OrderSummary(props) {
   let total = 0;
   props.beersInOrder.forEach((oneOrder) => {
-    const isBeerInOrder = props.beerInfo.filter((beer) => {
-      if (beer[0] === oneOrder.name) {
-        return beer[1];
-      }
-    });
+    const isBeerInOrder = props.beerInfo.filter(
+      (beer) => beer[0] === oneOrder.name
+    );
 
     let price = parseInt(isBeerInOrder[0][1].price);
     total += price * oneOrder.amount;
