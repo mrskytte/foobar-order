@@ -128,3 +128,8 @@ header {
 button {
   cursor: pointer;
 }
+
+form label {
+  display: flex;
+  flex-direction: column;
+}
