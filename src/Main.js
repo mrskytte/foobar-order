@@ -79,7 +79,7 @@ export default function Main(props) {
     }
     setFilterStatus(!filterStatus);
   }
-  console.log(cards);
+
   function setAmount(beer, amount) {
     const newCards = cards.map((c) => {
       if (c[0] === beer) {
@@ -165,6 +165,7 @@ export default function Main(props) {
           beersInOrder={beersInOrder}
           beerInfo={beersArray}
           goToOrder={goToOrder}
+          isCheckingOut={isCheckingOut}
         />
       ) : (
         console.log("noOrder")

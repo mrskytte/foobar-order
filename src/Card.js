@@ -60,7 +60,6 @@ export default function Card(props) {
       return image;
     }
   });
-  console.log(beerInfo);
 
   return (
     <>

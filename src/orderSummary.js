@@ -15,7 +15,8 @@ export default function OrderSummary(props) {
 
   return (
     <button id="order-summary" onClick={props.goToOrder}>
-      CONFIRM<span>TOTAL {total}kr</span>
+      {props.isCheckingOut ? "CONFIRM" : "CHECKOUT"}
+      <span>TOTAL {total}kr</span>
     </button>
   );
 }
