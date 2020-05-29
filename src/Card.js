@@ -43,9 +43,6 @@ export default function Card(props) {
 
   const [open, setOpen] = useState(false);
 
-  function openDesc() {
-    setOpen(open ? false : true);
-  }
   const classes = {
     "card-element": true,
     "beers-ordered": beerInfo.beersOrdered > 0,
@@ -74,10 +71,22 @@ export default function Card(props) {
       ) : props.isCheckingOut ? (
         console.log("show nothing")
       ) : (
-        <article id={beerInfo.name} className={myClassNames} onClick={openDesc}>
+        <article
+          id={beerInfo.name}
+          className={myClassNames}
+          onClick={open ? console.log("no") : () => setOpen(true)}
+        >
           <div className="number-of-beers">
             <p>{beerInfo.amount} x </p>
           </div>
+          <button
+            onClick={() => {
+              setOpen(false);
+              console.log("clicked");
+            }}
+          >
+            X
+          </button>
           <img src={thisImage[0].value} alt="Beer" />
           <h2>{beerInfo.name}</h2>
           <p className="alc">
