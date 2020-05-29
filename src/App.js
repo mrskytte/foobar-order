@@ -12,7 +12,6 @@ const endpoint = "https://fireorange-foobar.herokuapp.com";
 
 export default function App(props) {
   const beersArray = Object.entries(beers);
-
   const [cards, setCards] = useState([]);
   const [filterStatus, setFilterStatus] = useState(false);
   const [sortingStatus, setSortingStatus] = useState(null);
@@ -150,6 +149,7 @@ export default function App(props) {
 
   async function postOrder() {
     const postData = JSON.stringify(beersInOrder);
+    localStorage.setItem("lastOrder", postData);
     const posting = await fetch(`${endpoint}/order`, {
       method: "post",
       headers: {
