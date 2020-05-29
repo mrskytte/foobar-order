@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Checkout(props) {
-  console.log("bababab", props.cards);
   return (
     <main>
       <h1>ORDER SUMMARY</h1>
