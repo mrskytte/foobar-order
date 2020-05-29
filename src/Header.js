@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./assets/logo/logo_nobackground.png";
+import logo from "./assets/logo/logo_white_transparentbg.png";
 
 export default function Header(props) {
   return (

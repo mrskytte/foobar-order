@@ -63,14 +63,10 @@ export default function App(props) {
     let theseCards = [...cards];
     let sortedCards = "";
     if (sortingStatus === null || sortingStatus === "desc") {
-      sortedCards = theseCards.sort((a, b) =>
-        a[1].price > b[1].price ? 1 : -1
-      );
+      sortedCards = theseCards.sort((a, b) => (a[1].price > b[1].price ? 1 : -1));
       setSortingStatus("asc");
     } else {
-      sortedCards = theseCards.sort((a, b) =>
-        a[1].price < b[1].price ? 1 : -1
-      );
+      sortedCards = theseCards.sort((a, b) => (a[1].price < b[1].price ? 1 : -1));
       setSortingStatus("desc");
     }
     setCards(sortedCards);
@@ -146,14 +142,7 @@ export default function App(props) {
     const response = await posting.json();
   }
 
-  cardsInUse = cards.map((c) => (
-    <Card
-      {...c}
-      key={c[0]}
-      addBeerToOrder={addBeerToOrder}
-      isCheckingOut={isCheckingOut}
-    />
-  ));
+  cardsInUse = cards.map((c) => <Card {...c} key={c[0]} addBeerToOrder={addBeerToOrder} isCheckingOut={isCheckingOut} />);
 
   return (
     <div className="App">
@@ -163,20 +152,8 @@ export default function App(props) {
           <>
             <h1 className="main-title">ON TAP TODAY</h1>
             <div>
-              <Button
-                name={
-                  sortingStatus === null
-                    ? "PRICE"
-                    : sortingStatus === "asc"
-                    ? "PRICE ↑"
-                    : "PRICE ↓"
-                }
-                callback={sortByPrice}
-              />
-              <Button
-                name={filterStatus ? "ALL" : "POPULAR"}
-                callback={filterPopular}
-              />
+              <Button className="button-price" name={sortingStatus === null ? "PRICE" : sortingStatus === "asc" ? "PRICE ↑" : "PRICE ↓"} callback={sortByPrice} />
+              <Button className="button-popular" name={filterStatus ? "ALL" : "POPULAR"} callback={filterPopular} />
             </div>
             {cardsInUse}
           </>
@@ -186,19 +163,7 @@ export default function App(props) {
           <Checkout cards={cardsInUse} cancelOrder={cancelOrder} />
         )}
 
-        {isPaying ? (
-          console.log("go to payment")
-        ) : beersInOrder.length > 0 ? (
-          <OrderSummary
-            beersInOrder={beersInOrder}
-            beerInfo={beersArray}
-            goToOrder={goToOrder}
-            goToPayment={goToPayment}
-            isCheckingOut={isCheckingOut}
-          />
-        ) : (
-          console.log("noOrder")
-        )}
+        {isPaying ? console.log("go to payment") : beersInOrder.length > 0 ? <OrderSummary beersInOrder={beersInOrder} beerInfo={beersArray} goToOrder={goToOrder} goToPayment={goToPayment} isCheckingOut={isCheckingOut} /> : console.log("noOrder")}
       </main>
     </div>
   );
