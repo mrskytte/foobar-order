@@ -6,7 +6,10 @@ export default function Payment(props) {
   return (
     <>
       {props.paymentMethod === "creditCard" ? (
-        <CreditCardForm postOrder={props.postOrder} />
+        <CreditCardForm
+          postOrder={props.postOrder}
+          setCardInformation={props.setCardInformation}
+        />
       ) : props.paymentMethod === "mobilePay" ? (
         console.log("mobilePay")
       ) : props.paymentMethod === "ApplePay" ? (

@@ -6,6 +6,7 @@ import Checkout from "./Checkout";
 import OrderSummary from "./orderSummary";
 import Payment from "./Payment";
 import Header from "./Header";
+import OrderConfirmation from "./orderConfirmation";
 
 const endpoint = "https://fireorange-foobar.herokuapp.com";
 
@@ -18,6 +19,9 @@ export default function App(props) {
   const [isCheckingOut, setCheckingOut] = useState(false);
   const [isPaying, setIsPaying] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
+  const [orderConfirmed, setOrderStatus] = useState(false);
+  const [orderNumber, setOrderNumber] = useState("99");
+  const [cardInformation, setCardInformation] = useState({});
 
   let cardsInUse = [];
   let beersOnTap = useRef("");
@@ -32,13 +36,10 @@ export default function App(props) {
       onTap.forEach((oneTap) => {
         taps.push(oneTap.beer);
       });
-      beersOnTap.current = beersArray.filter((beer) => {
-        if (taps.includes(beer[0])) {
-          return beer;
-        }
-      });
+      beersOnTap.current = beersArray.filter((beer) => taps.includes(beer[0]));
       setCards(beersOnTap.current);
     }
+    console.log("called");
   }, []);
 
   const [beersInOrder, setBeersInOrder] = useState([]);
@@ -157,7 +158,34 @@ export default function App(props) {
       body: postData,
     });
     const response = await posting.json();
+    console.log("response", response);
+    handleOrderNumber(response.id);
   }
+
+  function handleOrderNumber(id) {
+    let orderId = id.toString();
+    if (orderId.length === 1) {
+      orderId = "0" + orderId;
+    } else if (orderId.length > 2) {
+      const n = orderId.length - 2;
+      orderId = orderId.substring(n);
+    }
+    setOrderNumber(orderId);
+    setOrderStatus(true);
+    console.log("orderID", orderId);
+  }
+
+  let total = 0;
+  beersInOrder.forEach((oneOrder) => {
+    const isBeerInOrder = beersArray.filter((beer) => {
+      if (beer[0] === oneOrder.name) {
+        return beer[1];
+      }
+    });
+
+    let price = parseInt(isBeerInOrder[0][1].price);
+    total += price * oneOrder.amount;
+  });
 
   cardsInUse = cards.map((c) => (
     <Card
@@ -165,21 +193,42 @@ export default function App(props) {
       key={c[0]}
       addBeerToOrder={addBeerToOrder}
       isCheckingOut={isCheckingOut}
+      orderConfirmed={orderConfirmed}
     />
   ));
 
   return (
     <div className="App">
-      <Header
-        isCheckingOut={isCheckingOut}
-        isPaying={isPaying}
-        cancelOrder={cancelOrder}
-        cancelPayment={cancelPayment}
-        cancelPaymentMethod={cancelPaymentMethod}
-        paymentMethod={paymentMethod}
-      />
+      {orderConfirmed ? (
+        <></>
+      ) : (
+        <Header
+          isCheckingOut={isCheckingOut}
+          isPaying={isPaying}
+          cancelOrder={cancelOrder}
+          cancelPayment={cancelPayment}
+          cancelPaymentMethod={cancelPaymentMethod}
+          paymentMethod={paymentMethod}
+        />
+      )}
       <main>
-        {!isCheckingOut ? (
+        {orderConfirmed ? (
+          <OrderConfirmation
+            orderNumber={orderNumber}
+            cards={cardsInUse}
+            total={total}
+            cardInformation={cardInformation}
+          />
+        ) : isPaying ? (
+          <Payment
+            postOrder={postOrder}
+            setPayment={setPayment}
+            paymentMethod={paymentMethod}
+            setCardInformation={setCardInformation}
+          />
+        ) : isCheckingOut ? (
+          <Checkout cards={cardsInUse} />
+        ) : (
           <>
             <h1 className="main-title">ON TAP TODAY</h1>
             <div>
@@ -200,18 +249,10 @@ export default function App(props) {
             </div>
             {cardsInUse}
           </>
-        ) : isPaying ? (
-          <Payment
-            postOrder={postOrder}
-            setPayment={setPayment}
-            paymentMethod={paymentMethod}
-          />
-        ) : (
-          <Checkout cards={cardsInUse} />
         )}
 
         {isPaying ? (
-          console.log("go to payment")
+          <></>
         ) : beersInOrder.length > 0 ? (
           <OrderSummary
             beersInOrder={beersInOrder}
@@ -219,9 +260,10 @@ export default function App(props) {
             goToOrder={goToOrder}
             goToPayment={goToPayment}
             isCheckingOut={isCheckingOut}
+            total={total}
           />
         ) : (
-          console.log("noOrder")
+          <></>
         )}
       </main>
     </div>

@@ -67,9 +67,13 @@ export default function Card(props) {
         <tr>
           <td>{beerInfo.name}</td>
           <td>{beerInfo.price}</td>
-          <td>
-            <AddButton changeAmount={changeAmount} amount={beerInfo.amount} />
-          </td>
+          {props.orderConfirmed ? (
+            <td>{beerInfo.amount}</td>
+          ) : (
+            <td>
+              <AddButton changeAmount={changeAmount} amount={beerInfo.amount} />
+            </td>
+          )}
         </tr>
       ) : props.isCheckingOut ? (
         console.log("show nothing")
