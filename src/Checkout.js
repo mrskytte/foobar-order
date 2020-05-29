@@ -7,9 +7,9 @@ export default function Checkout(props) {
       <table>
         <thead>
           <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Amount</th>
+            <th className="summary-item">Item</th>
+            <th className="summary-price">Price</th>
+            <th className="summary-amount">Amount</th>
           </tr>
         </thead>
         <tbody>{props.cards}</tbody>

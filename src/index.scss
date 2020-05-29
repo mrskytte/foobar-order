@@ -1,15 +1,12 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 $primaty-color: #fffdf0;
 $secondary-color: #2a2723;
@@ -21,15 +18,17 @@ $grey: #bab3b5;
 }
 
 header {
-  height: 10vh;
+  height: 12vh;
   background-color: $secondary-color;
   img {
-    height: 100%;
+    height: 80%;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
   }
 }
 
 .card-element {
-  border: 1px solid black;
+  border: 1px solid white;
   display: grid;
   grid-template-areas:
     "numberofbeer img title"
@@ -71,13 +70,21 @@ header {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "img img"
-      "title price"
-      "alc addbeer"
-      "desc desc";
+      "beername beername"
+      "alc alc"
+      "desc desc"
+      "price addbeer";
     .desc,
     .add-beer {
       display: inline;
       animation: openMenu 1s ease-in forwards;
+    }
+    .add-beer {
+      justify-content: center;
+      grid-column: 2/3;
+      display: inline-flex;
+      margin-top: 0;
+      grid-row: 5/6;
     }
     .desc {
       grid-area: desc;
@@ -85,14 +92,29 @@ header {
 
     img {
       margin: auto;
+      margin-bottom: 0;
+      padding-bottom: 0;
       animation: openImg 0.5s ease forwards;
+    }
+    .beername {
+      grid-column: 1/3;
+      grid-row: 2/3;
+      margin-left: 1.2em;
+      font-size: 26px;
+      margin-top: 0;
+    }
+    .alc {
+      grid-column: 1/3;
+      grid-row: 3/4;
+      margin-left: 2em;
+    }
+    .price {
+      margin-left: 1.6em;
+      font-size: 20px;
     }
   }
 }
-.add-beer {
-  grid-area: addbeer;
-  display: flex;
-}
+
 @keyframes openMenu {
   from {
     opacity: 0;
@@ -137,4 +159,112 @@ form label {
 
 img.ticket {
   width: 60%;
+}
+@font-face {
+  font-family: "Montserrat-R";
+  src: url(assets/fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Montserrat-B";
+  src: url(assets/fonts/Montserrat-Bold.ttf);
+}
+
+:root {
+  --bg: white;
+  --text-color: #2a2723;
+}
+
+.desc {
+  font-family: "Montserrat-R";
+  color: #2a2723;
+  margin-left: 2em;
+  margin-right: 2em;
+  line-height: 1.5em;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.price {
+  font-family: "Montserrat-B";
+  color: #f0621f;
+  font-size: 20px;
+  margin-top: 0;
+}
+
+.beername {
+  font-family: "Montserrat-B";
+  color: #2a2723;
+  font-size: 20px;
+  margin-top: 3em;
+  padding: 0;
+  margin-bottom: 0;
+  margin-right: 2em;
+}
+
+.alc {
+  font-family: "Montserrat-B";
+  color: #2a2723;
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.main-title,
+.order-summary {
+  font-family: "Montserrat-B";
+  font-size: 24px;
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+.button-price,
+.button-popular {
+  font-family: "Montserrat-B";
+  background-color: #fefefe;
+  box-shadow: 0px -1px 21px -8px rgba(0, 0, 0, 0.75);
+  margin-top: 1em;
+}
+
+.add-beer > .minus,
+.plus {
+  color: #fefefe;
+  margin: 0.3em;
+  background-color: #f0621f;
+  font-family: "Montserrat-B";
+  font-size: 20px;
+  border-radius: 100%;
+  height: 2em;
+  width: 2em;
+  text-align: center;
+  padding: 0.3em;
+  border: 1px solid #2a2723;
+}
+
+.beer-amount {
+  font-family: "Montserrat-B";
+  font-size: 18px;
+}
+
+#order-summary {
+  background-color: #2a2723;
+  color: #fefefe;
+  font-size: 16px;
+  font-family: "Montserrat-B";
+}
+
+.total {
+  color: #fefefe;
+  font-family: "Montserrat-B";
+  font-size: 16px;
+  margin-left: 1em;
+}
+
+//Order Summary
+
+.close-btn {
+  border: none;
+  background: none;
+  font-size: 24px;
+  color: #f0621f;
+  padding: 0;
 }

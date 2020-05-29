@@ -64,14 +64,10 @@ export default function App(props) {
     let theseCards = [...cards];
     let sortedCards = "";
     if (sortingStatus === null || sortingStatus === "desc") {
-      sortedCards = theseCards.sort((a, b) =>
-        a[1].price > b[1].price ? 1 : -1
-      );
+      sortedCards = theseCards.sort((a, b) => (a[1].price > b[1].price ? 1 : -1));
       setSortingStatus("asc");
     } else {
-      sortedCards = theseCards.sort((a, b) =>
-        a[1].price < b[1].price ? 1 : -1
-      );
+      sortedCards = theseCards.sort((a, b) => (a[1].price < b[1].price ? 1 : -1));
       setSortingStatus("desc");
     }
     setCards(sortedCards);
@@ -175,6 +171,7 @@ export default function App(props) {
     console.log("orderID", orderId);
   }
 
+<<<<<<< HEAD
   let total = 0;
   beersInOrder.forEach((oneOrder) => {
     const isBeerInOrder = beersArray.filter((beer) => {
@@ -196,6 +193,9 @@ export default function App(props) {
       orderConfirmed={orderConfirmed}
     />
   ));
+=======
+  cardsInUse = cards.map((c) => <Card {...c} key={c[0]} addBeerToOrder={addBeerToOrder} isCheckingOut={isCheckingOut} />);
+>>>>>>> final_css
 
   return (
     <div className="App">
@@ -232,25 +232,14 @@ export default function App(props) {
           <>
             <h1 className="main-title">ON TAP TODAY</h1>
             <div>
-              <Button
-                name={
-                  sortingStatus === null
-                    ? "PRICE"
-                    : sortingStatus === "asc"
-                    ? "PRICE ↑"
-                    : "PRICE ↓"
-                }
-                callback={sortByPrice}
-              />
-              <Button
-                name={filterStatus ? "ALL" : "POPULAR"}
-                callback={filterPopular}
-              />
+              <Button className="button-price" name={sortingStatus === null ? "PRICE" : sortingStatus === "asc" ? "PRICE ↑" : "PRICE ↓"} callback={sortByPrice} />
+              <Button className="button-popular" name={filterStatus ? "ALL" : "POPULAR"} callback={filterPopular} />
             </div>
             {cardsInUse}
           </>
         )}
 
+<<<<<<< HEAD
         {isPaying ? (
           <></>
         ) : beersInOrder.length > 0 ? (
@@ -265,6 +254,9 @@ export default function App(props) {
         ) : (
           <></>
         )}
+=======
+        {isPaying ? console.log("go to payment") : beersInOrder.length > 0 ? <OrderSummary beersInOrder={beersInOrder} beerInfo={beersArray} goToOrder={goToOrder} goToPayment={goToPayment} isCheckingOut={isCheckingOut} /> : console.log("noOrder")}
+>>>>>>> final_css
       </main>
     </div>
   );

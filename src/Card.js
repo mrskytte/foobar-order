@@ -88,12 +88,11 @@ export default function Card(props) {
             X
           </button>
           <img src={thisImage[0].value} alt="Beer" />
-          <h2>{beerInfo.name}</h2>
+          <h2 className="beername">{beerInfo.name}</h2>
           <p className="alc">
-            {beerInfo.alc}%, 0.5l{" "}
-            <span>{beerInfo.popular === "true" ? "⭐" : ""}</span>
+            {beerInfo.alc}%, 0.5l <span>{beerInfo.popular === "true" ? "⭐" : ""}</span>
           </p>
-          <p className="price">{beerInfo.price}kr </p>
+          <p className="price">{beerInfo.price},00kr </p>
           <p className="desc">{beerInfo.desc}</p>
           <AddButton changeAmount={changeAmount} amount={beerInfo.amount} />
         </article>

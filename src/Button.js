@@ -6,7 +6,9 @@ export default function button(props) {
   }
   return (
     <>
-      <button onClick={buttonClicked}>{props.name}</button>
+      <button className={props.className} onClick={buttonClicked}>
+        {props.name}
+      </button>
     </>
   );
 }
