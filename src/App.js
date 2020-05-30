@@ -64,10 +64,14 @@ export default function App(props) {
     let theseCards = [...cards];
     let sortedCards = "";
     if (sortingStatus === null || sortingStatus === "desc") {
-      sortedCards = theseCards.sort((a, b) => (a[1].price > b[1].price ? 1 : -1));
+      sortedCards = theseCards.sort((a, b) =>
+        a[1].price > b[1].price ? 1 : -1
+      );
       setSortingStatus("asc");
     } else {
-      sortedCards = theseCards.sort((a, b) => (a[1].price < b[1].price ? 1 : -1));
+      sortedCards = theseCards.sort((a, b) =>
+        a[1].price < b[1].price ? 1 : -1
+      );
       setSortingStatus("desc");
     }
     setCards(sortedCards);
@@ -84,7 +88,7 @@ export default function App(props) {
   }
 
   function setAmount(beer, amount) {
-    const newCards = cards.map((c) => {
+    beersOnTap.current = cards.map((c) => {
       if (c[0] === beer) {
         return [
           c[0],
@@ -116,10 +120,12 @@ export default function App(props) {
       }
     });
 
-    setCards(newCards);
+    setCards(beersOnTap.current);
   }
 
   function goToOrder() {
+    setFilterStatus(false);
+    setCards(beersOnTap.current);
     setCheckingOut(true);
   }
 
@@ -183,30 +189,86 @@ export default function App(props) {
     total += price * oneOrder.amount;
   });
 
-  cardsInUse = cards.map((c) => <Card {...c} key={c[0]} addBeerToOrder={addBeerToOrder} isCheckingOut={isCheckingOut} orderConfirmed={orderConfirmed} />);
+  cardsInUse = cards.map((c) => (
+    <Card
+      {...c}
+      key={c[0]}
+      addBeerToOrder={addBeerToOrder}
+      isCheckingOut={isCheckingOut}
+      orderConfirmed={orderConfirmed}
+    />
+  ));
 
   return (
     <div className="App">
-      {orderConfirmed ? <></> : <Header isCheckingOut={isCheckingOut} isPaying={isPaying} cancelOrder={cancelOrder} cancelPayment={cancelPayment} cancelPaymentMethod={cancelPaymentMethod} paymentMethod={paymentMethod} />}
+      {orderConfirmed ? (
+        <></>
+      ) : (
+        <Header
+          isCheckingOut={isCheckingOut}
+          isPaying={isPaying}
+          cancelOrder={cancelOrder}
+          cancelPayment={cancelPayment}
+          cancelPaymentMethod={cancelPaymentMethod}
+          paymentMethod={paymentMethod}
+        />
+      )}
       <main>
         {orderConfirmed ? (
-          <OrderConfirmation orderNumber={orderNumber} cards={cardsInUse} total={total} cardInformation={cardInformation} />
+          <OrderConfirmation
+            orderNumber={orderNumber}
+            cards={cardsInUse}
+            total={total}
+            cardInformation={cardInformation}
+          />
         ) : isPaying ? (
-          <Payment postOrder={postOrder} setPayment={setPayment} paymentMethod={paymentMethod} setCardInformation={setCardInformation} />
+          <Payment
+            postOrder={postOrder}
+            setPayment={setPayment}
+            paymentMethod={paymentMethod}
+            setCardInformation={setCardInformation}
+          />
         ) : isCheckingOut ? (
           <Checkout cards={cardsInUse} />
         ) : (
           <>
             <h1 className="main-title">ON TAP TODAY</h1>
             <div>
-              <Button className="button-price" name={sortingStatus === null ? "PRICE" : sortingStatus === "asc" ? "PRICE ↑" : "PRICE ↓"} callback={sortByPrice} />
-              <Button className="button-popular" name={filterStatus ? "ALL" : "POPULAR"} callback={filterPopular} />
+              <Button
+                className="button-price"
+                name={
+                  sortingStatus === null
+                    ? "PRICE"
+                    : sortingStatus === "asc"
+                    ? "PRICE ↑"
+                    : "PRICE ↓"
+                }
+                callback={sortByPrice}
+              />
+              <Button
+                className="button-popular"
+                name={filterStatus ? "ALL" : "POPULAR"}
+                callback={filterPopular}
+              />
             </div>
             {cardsInUse}
           </>
         )}
 
-        {isPaying ? <></> : beersInOrder.length > 0 ? <OrderSummary beersInOrder={beersInOrder} beerInfo={beersArray} goToOrder={goToOrder} goToPayment={goToPayment} isCheckingOut={isCheckingOut} total={total} /> : <></>}
+        {isPaying ? (
+          <></>
+        ) : beersInOrder.length > 0 ? (
+          <OrderSummary
+            beersInOrder={beersInOrder}
+            beerInfo={beersArray}
+            goToOrder={goToOrder}
+            goToPayment={goToPayment}
+            isCheckingOut={isCheckingOut}
+            total={total}
+          />
+        ) : (
+          <></>
+        )}
       </main>
     </div>
   );

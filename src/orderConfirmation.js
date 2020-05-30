@@ -63,7 +63,9 @@ export default function OrderConfirmation(props) {
           />
         </>
       )}
-      <button onClick={setViewOrder}>VIEW ORDER</button>
+      <button onClick={setViewOrder}>
+        {viewOrder ? "CLOSE" : "VIEW ORDER"}
+      </button>
     </>
   );
 }
