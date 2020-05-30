@@ -3,6 +3,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  *:focus {
+    outline: 0;
+  }
 }
 
 code {
@@ -45,7 +48,7 @@ header {
   }
   &.beers-added {
     .number-of-beers {
-      visibility: visible;
+      visibility: none;
       width: auto;
       grid-area: numberofbeer;
       height: 80%;
@@ -69,6 +72,7 @@ header {
   &.open-menu {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
+      "close-beer-button close-beer-button"
       "img img"
       "beername beername"
       "alc alc"
@@ -83,8 +87,8 @@ header {
       justify-content: center;
       grid-column: 2/3;
       display: inline-flex;
-      margin-top: 0;
-      grid-row: 5/6;
+      margin-top: 1em;
+      grid-row: 6/7;
     }
     .desc {
       grid-area: desc;
@@ -94,23 +98,36 @@ header {
       margin: auto;
       margin-bottom: 0;
       padding-bottom: 0;
+      margin-top: 0;
       animation: openImg 0.5s ease forwards;
     }
     .beername {
       grid-column: 1/3;
-      grid-row: 2/3;
+      grid-row: 3/4;
       margin-left: 1.2em;
       font-size: 26px;
       margin-top: 0;
     }
     .alc {
       grid-column: 1/3;
-      grid-row: 3/4;
+      grid-row: 4/5;
       margin-left: 2em;
     }
     .price {
       margin-left: 1.6em;
       font-size: 20px;
+      margin-top: 1em;
+    }
+    .close-beer-button {
+      display: block;
+      grid-column: 2/3;
+      padding: 0;
+      margin: 0;
+      background: none;
+      border: none;
+      font-size: 30px;
+      color: #f0621f;
+      margin-left: 2em;
     }
   }
 }
@@ -179,7 +196,7 @@ img.ticket {
   font-family: "Montserrat-R";
   color: #2a2723;
   margin-left: 2em;
-  margin-right: 2em;
+  margin-right: 1em;
   line-height: 1.5em;
   font-size: 16px;
   margin-top: 0;
@@ -256,7 +273,6 @@ img.ticket {
   color: #fefefe;
   font-family: "Montserrat-B";
   font-size: 16px;
-  margin-left: 1em;
 }
 
 //Order Summary
@@ -267,4 +283,8 @@ img.ticket {
   font-size: 24px;
   color: #f0621f;
   padding: 0;
+}
+
+.close-beer-button {
+  display: none;
 }

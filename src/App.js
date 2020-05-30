@@ -171,7 +171,6 @@ export default function App(props) {
     console.log("orderID", orderId);
   }
 
-<<<<<<< HEAD
   let total = 0;
   beersInOrder.forEach((oneOrder) => {
     const isBeerInOrder = beersArray.filter((beer) => {
@@ -184,48 +183,16 @@ export default function App(props) {
     total += price * oneOrder.amount;
   });
 
-  cardsInUse = cards.map((c) => (
-    <Card
-      {...c}
-      key={c[0]}
-      addBeerToOrder={addBeerToOrder}
-      isCheckingOut={isCheckingOut}
-      orderConfirmed={orderConfirmed}
-    />
-  ));
-=======
-  cardsInUse = cards.map((c) => <Card {...c} key={c[0]} addBeerToOrder={addBeerToOrder} isCheckingOut={isCheckingOut} />);
->>>>>>> final_css
+  cardsInUse = cards.map((c) => <Card {...c} key={c[0]} addBeerToOrder={addBeerToOrder} isCheckingOut={isCheckingOut} orderConfirmed={orderConfirmed} />);
 
   return (
     <div className="App">
-      {orderConfirmed ? (
-        <></>
-      ) : (
-        <Header
-          isCheckingOut={isCheckingOut}
-          isPaying={isPaying}
-          cancelOrder={cancelOrder}
-          cancelPayment={cancelPayment}
-          cancelPaymentMethod={cancelPaymentMethod}
-          paymentMethod={paymentMethod}
-        />
-      )}
+      {orderConfirmed ? <></> : <Header isCheckingOut={isCheckingOut} isPaying={isPaying} cancelOrder={cancelOrder} cancelPayment={cancelPayment} cancelPaymentMethod={cancelPaymentMethod} paymentMethod={paymentMethod} />}
       <main>
         {orderConfirmed ? (
-          <OrderConfirmation
-            orderNumber={orderNumber}
-            cards={cardsInUse}
-            total={total}
-            cardInformation={cardInformation}
-          />
+          <OrderConfirmation orderNumber={orderNumber} cards={cardsInUse} total={total} cardInformation={cardInformation} />
         ) : isPaying ? (
-          <Payment
-            postOrder={postOrder}
-            setPayment={setPayment}
-            paymentMethod={paymentMethod}
-            setCardInformation={setCardInformation}
-          />
+          <Payment postOrder={postOrder} setPayment={setPayment} paymentMethod={paymentMethod} setCardInformation={setCardInformation} />
         ) : isCheckingOut ? (
           <Checkout cards={cardsInUse} />
         ) : (
@@ -239,24 +206,7 @@ export default function App(props) {
           </>
         )}
 
-<<<<<<< HEAD
-        {isPaying ? (
-          <></>
-        ) : beersInOrder.length > 0 ? (
-          <OrderSummary
-            beersInOrder={beersInOrder}
-            beerInfo={beersArray}
-            goToOrder={goToOrder}
-            goToPayment={goToPayment}
-            isCheckingOut={isCheckingOut}
-            total={total}
-          />
-        ) : (
-          <></>
-        )}
-=======
-        {isPaying ? console.log("go to payment") : beersInOrder.length > 0 ? <OrderSummary beersInOrder={beersInOrder} beerInfo={beersArray} goToOrder={goToOrder} goToPayment={goToPayment} isCheckingOut={isCheckingOut} /> : console.log("noOrder")}
->>>>>>> final_css
+        {isPaying ? <></> : beersInOrder.length > 0 ? <OrderSummary beersInOrder={beersInOrder} beerInfo={beersArray} goToOrder={goToOrder} goToPayment={goToPayment} isCheckingOut={isCheckingOut} total={total} /> : <></>}
       </main>
     </div>
   );

@@ -71,15 +71,12 @@ export default function Card(props) {
       ) : props.isCheckingOut ? (
         console.log("show nothing")
       ) : (
-        <article
-          id={beerInfo.name}
-          className={myClassNames}
-          onClick={open ? console.log("no") : () => setOpen(true)}
-        >
+        <article id={beerInfo.name} className={myClassNames} onClick={open ? console.log("no") : () => setOpen(true)}>
           <div className="number-of-beers">
             <p>{beerInfo.amount} x </p>
           </div>
           <button
+            class="close-beer-button"
             onClick={() => {
               setOpen(false);
               console.log("clicked");
