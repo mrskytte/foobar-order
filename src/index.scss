@@ -1,6 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   *:focus {
@@ -9,7 +11,8 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 $primaty-color: #fffdf0;
 $secondary-color: #2a2723;
@@ -18,6 +21,7 @@ $grey: #bab3b5;
 
 * {
   font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
 header {
@@ -287,4 +291,54 @@ img.ticket {
 
 .close-beer-button {
   display: none;
+}
+
+#frontpage {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1000;
+  background-color: $primaty-color;
+  padding: 1em;
+  padding-top: 6em;
+  text-align: center;
+  h1 {
+    color: $accent;
+    font-size: 28px;
+  }
+  h2 {
+    padding: 1em 1.5em 2em 1.5em;
+    font-size: 20px;
+  }
+  button {
+    margin-top: 6em;
+    font-family: "Montserrat-B";
+    background-color: #fefefe;
+    box-shadow: 0px -1px 10px -8px rgba(0, 0, 0, 0.75);
+  }
+  &.hidden {
+    animation: hideFrontpage 1s ease-out forwards;
+  }
+  #loader {
+    width: 40%;
+    margin: auto;
+  }
+  .loader-element {
+    height: 1em;
+    width: 1em;
+    background-color: $accent;
+  }
+}
+
+@keyframes hideFrontpage {
+  to {
+    transform: translateY(-100vh);
+  }
+}
+
+.frontpage-shown {
+  height: 100vh;
+  overflow: hidden;
 }

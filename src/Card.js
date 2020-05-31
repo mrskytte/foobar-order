@@ -25,6 +25,7 @@ export default function Card(props) {
     { name: "steampunk", value: steampunk },
   ];
   const beerInfo = props[1];
+
   function classNames(classes) {
     return Object.entries(classes)
       .filter(([key, value]) => value)
@@ -71,12 +72,16 @@ export default function Card(props) {
       ) : props.isCheckingOut ? (
         console.log("show nothing")
       ) : (
-        <article id={beerInfo.name} className={myClassNames} onClick={open ? console.log("no") : () => setOpen(true)}>
+        <article
+          id={beerInfo.name}
+          className={myClassNames}
+          onClick={open ? console.log("no") : () => setOpen(true)}
+        >
           <div className="number-of-beers">
             <p>{beerInfo.amount} x </p>
           </div>
           <button
-            class="close-beer-button"
+            className="close-beer-button"
             onClick={() => {
               setOpen(false);
               console.log("clicked");
@@ -87,7 +92,8 @@ export default function Card(props) {
           <img src={thisImage[0].value} alt="Beer" />
           <h2 className="beername">{beerInfo.name}</h2>
           <p className="alc">
-            {beerInfo.alc}%, 0.5l <span>{beerInfo.popular === "true" ? "⭐" : ""}</span>
+            {beerInfo.alc}%, 0.5l{" "}
+            <span>{beerInfo.popular === "true" ? "⭐" : ""}</span>
           </p>
           <p className="price">{beerInfo.price},00kr </p>
           <p className="desc">{beerInfo.desc}</p>

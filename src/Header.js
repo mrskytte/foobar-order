@@ -2,7 +2,6 @@ import React from "react";
 import logo from "./assets/logo/logo_white_transparentbg.png";
 
 export default function Header(props) {
-  console.log(props.paymentMethod);
   return (
     <header>
       {props.paymentMethod ? (

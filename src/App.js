@@ -7,6 +7,7 @@ import OrderSummary from "./orderSummary";
 import Payment from "./Payment";
 import Header from "./Header";
 import OrderConfirmation from "./orderConfirmation";
+import Frontpage from "./Frontpage";
 
 const endpoint = "https://fireorange-foobar.herokuapp.com";
 
@@ -21,6 +22,8 @@ export default function App(props) {
   const [orderConfirmed, setOrderStatus] = useState(false);
   const [orderNumber, setOrderNumber] = useState("99");
   const [cardInformation, setCardInformation] = useState({});
+  const [showFrontpage, setFrontpageStatus] = useState(true);
+  const [beersInOrder, setBeersInOrder] = useState([]);
 
   let cardsInUse = [];
   let beersOnTap = useRef("");
@@ -41,8 +44,6 @@ export default function App(props) {
     console.log("called");
   }, []);
 
-  const [beersInOrder, setBeersInOrder] = useState([]);
-
   function addBeerToOrder(beer, amount) {
     let newOrder = "";
     if (beersInOrder.some((oneOrder) => oneOrder.name === beer)) {
@@ -58,6 +59,11 @@ export default function App(props) {
     }
     setBeersInOrder(newOrder);
     setAmount(beer, amount);
+  }
+
+  function addLastOrder(order) {
+    setBeersInOrder(order);
+    setCheckingOut(true);
   }
 
   function sortByPrice() {
@@ -177,13 +183,13 @@ export default function App(props) {
     console.log("orderID", orderId);
   }
 
+  console.log(beersInOrder);
+
   let total = 0;
   beersInOrder.forEach((oneOrder) => {
-    const isBeerInOrder = beersArray.filter((beer) => {
-      if (beer[0] === oneOrder.name) {
-        return beer[1];
-      }
-    });
+    const isBeerInOrder = beersArray.filter(
+      (beer) => beer[0] === oneOrder.name
+    );
 
     let price = parseInt(isBeerInOrder[0][1].price);
     total += price * oneOrder.amount;
@@ -200,7 +206,13 @@ export default function App(props) {
   ));
 
   return (
-    <div className="App">
+    <div className={showFrontpage ? "App frontpage-shown" : "App"}>
+      <Frontpage
+        className="visible"
+        addLastOrder={addLastOrder}
+        setAmount={setAmount}
+        setFrontpageStatus={setFrontpageStatus}
+      />
       {orderConfirmed ? (
         <></>
       ) : (
