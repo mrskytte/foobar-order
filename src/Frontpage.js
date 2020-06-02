@@ -6,7 +6,7 @@ export default function Frontpage(props) {
   const [loadDone, setLoadStatus] = useState(false);
 
   useEffect(() => {
-    // setTimeout(showPage, 2000);
+    setTimeout(showPage, 2000);
   }, []);
 
   function showPage() {
