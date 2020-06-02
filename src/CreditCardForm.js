@@ -18,10 +18,12 @@ export default function CreditCardForm(props) {
     props.setCardInformation(cardInformation);
   }
 
-  console.log("clicked");
   function confirmOrder(event) {
     event.preventDefault();
-    setSubmitState("true");
+    if (readyToSubmit) {
+      props.postOrder();
+      storeCardInformation();
+    }
   }
 
   useEffect(() => {
@@ -50,15 +52,30 @@ export default function CreditCardForm(props) {
     }
 
     if (
+      expirationDate !== "" &&
       is.falsy(
         RegExp(/^[0-9]{2}\s\/\s[0-9]{2}([0-9]{2})?$/).test(expirationDate)
       )
     ) {
       setExpireValidity(false);
-    } else {
+    } else if (
+      is.truthy(
+        RegExp(/^[0-9]{2}\s\/\s[0-9]{2}([0-9]{2})?$/).test(expirationDate)
+      )
+    ) {
       setExpireValidity(true);
+    } else {
+      setExpireValidity("");
     }
   }, [nameOnCard, cardNumber, cvcNumber, expirationDate]);
+
+  useEffect(() => {
+    if (nameValidity && cardValidity && cvcValidity && expireValidity) {
+      setSubmitState(true);
+    } else {
+      setSubmitState(false);
+    }
+  }, [nameValidity, cardValidity, cvcValidity, expireValidity]);
 
   return (
     <>
