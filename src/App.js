@@ -41,7 +41,6 @@ export default function App(props) {
       beersOnTap.current = beersArray.filter((beer) => taps.includes(beer[0]));
       setCards(beersOnTap.current);
     }
-    console.log("called");
   }, []);
 
   function addBeerToOrder(beer, amount) {

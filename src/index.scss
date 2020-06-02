@@ -322,13 +322,24 @@ img.ticket {
     animation: hideFrontpage 1s ease-out forwards;
   }
   #loader {
-    width: 40%;
-    margin: auto;
+    width: 50%;
   }
   .loader-element {
-    height: 1em;
-    width: 1em;
-    background-color: $accent;
+    height: 5em;
+    width: 12em;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: translateX(em);
+  }
+  #top {
+    background-image: url("./assets/preloader/beer_label_top.png");
+  }
+  #middle {
+    background-image: url("./assets/preloader/beer_label_middle.png");
+  }
+  #bottom {
+    background-image: url("./assets/preloader/beer_label_bottom.png");
   }
 }
 
