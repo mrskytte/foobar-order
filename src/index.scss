@@ -342,3 +342,11 @@ img.ticket {
   height: 100vh;
   overflow: hidden;
 }
+
+.valid {
+  outline: 4px solid green;
+}
+
+.invalid {
+  outline: 4px solid red;
+}
