@@ -58,13 +58,13 @@ export default function Card(props) {
   return (
     <>
       {props.isCheckingOut && beerInfo.amount > 0 ? (
-        <tr>
-          <td>{beerInfo.name}</td>
-          <td>{beerInfo.price}</td>
+        <tr className="tbody">
+          <td className="beer-name-table">{beerInfo.name}</td>
+          <td className="beer-price-table">{beerInfo.price},00kr</td>
           {props.orderConfirmed ? (
             <td>{beerInfo.amount}</td>
           ) : (
-            <td>
+            <td className="beer-amount-table">
               <AddButton changeAmount={changeAmount} amount={beerInfo.amount} />
             </td>
           )}
@@ -72,14 +72,7 @@ export default function Card(props) {
       ) : props.isCheckingOut ? (
         console.log("show nothing")
       ) : (
-        <article
-          id={beerInfo.name}
-          className={myClassNames}
-          onClick={open ? console.log("no") : () => setOpen(true)}
-        >
-          <div className="number-of-beers">
-            <p>{beerInfo.amount} x </p>
-          </div>
+        <article id={beerInfo.name} className={myClassNames} onClick={open ? console.log("no") : () => setOpen(true)}>
           <button
             className="close-beer-button"
             onClick={() => {
@@ -92,8 +85,7 @@ export default function Card(props) {
           <img src={thisImage[0].value} alt="Beer" />
           <h2 className="beername">{beerInfo.name}</h2>
           <p className="alc">
-            {beerInfo.alc}%, 0.5l{" "}
-            <span>{beerInfo.popular === "true" ? "⭐" : ""}</span>
+            {beerInfo.alc}%, 0.5l <span>{beerInfo.popular === "true" ? "⭐" : ""}</span>
           </p>
           <p className="price">{beerInfo.price},00kr </p>
           <p className="desc">{beerInfo.desc}</p>

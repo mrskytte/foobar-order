@@ -50,14 +50,13 @@ export default function Frontpage(props) {
             <Anime
               duration={750}
               delay={anime.stagger(100, { start: 100 })}
-              translateX="4em"
+              translateX="80%"
               loop={true}
               direction={"alternate"}
             >
-              <div className="loader-element"></div>
-              <div className="loader-element"></div>
-              <div className="loader-element"></div>
-              <div className="loader-element"></div>
+              <div id="top" className="loader-element"></div>
+              <div id="middle" className="loader-element"></div>
+              <div id="bottom" className="loader-element"></div>
             </Anime>
           </div>
         </>
