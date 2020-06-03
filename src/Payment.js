@@ -1,15 +1,14 @@
 import React from "react";
 import CreditCardForm from "./CreditCardForm";
 import creditCards from "./assets/imgs/creditcards.png";
+import applePay from "./assets/imgs/applepay.png";
+import mobilePay from "./assets/imgs/mobilepay.png";
 
 export default function Payment(props) {
   return (
     <>
       {props.paymentMethod === "creditCard" ? (
-        <CreditCardForm
-          postOrder={props.postOrder}
-          setCardInformation={props.setCardInformation}
-        />
+        <CreditCardForm postOrder={props.postOrder} setCardInformation={props.setCardInformation} />
       ) : props.paymentMethod === "mobilePay" ? (
         console.log("mobilePay")
       ) : props.paymentMethod === "ApplePay" ? (
@@ -17,18 +16,18 @@ export default function Payment(props) {
       ) : (
         <ul className="payment-options">
           <li>
-            <button onClick={() => props.setPayment("mobilePay")}>
-              MobilePay
+            <button className="mobilepay-btn" onClick={() => props.setPayment("mobilePay")}>
+              <img className="mobilepay" src={mobilePay} alt="Mobile Pay" />
             </button>
           </li>
           <li>
-            <button onClick={() => props.setPayment("applePay")}>
-              Apple Pay
+            <button className="applepay-btn " onClick={() => props.setPayment("applePay")}>
+              <img className="applepay" src={applePay} alt="Apple Pay" />
             </button>
           </li>
           <li>
-            <button onClick={() => props.setPayment("creditCard")}>
-              <img src={creditCards} alt="Credit Cards" />
+            <button className="creditcard-btn" onClick={() => props.setPayment("creditCard")}>
+              <img className="creditcard" src={creditCards} alt="Credit Cards" />
             </button>
           </li>
         </ul>

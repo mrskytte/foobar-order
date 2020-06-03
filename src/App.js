@@ -69,14 +69,10 @@ export default function App(props) {
     let theseCards = [...cards];
     let sortedCards = "";
     if (sortingStatus === null || sortingStatus === "desc") {
-      sortedCards = theseCards.sort((a, b) =>
-        a[1].price > b[1].price ? 1 : -1
-      );
+      sortedCards = theseCards.sort((a, b) => (a[1].price > b[1].price ? 1 : -1));
       setSortingStatus("asc");
     } else {
-      sortedCards = theseCards.sort((a, b) =>
-        a[1].price < b[1].price ? 1 : -1
-      );
+      sortedCards = theseCards.sort((a, b) => (a[1].price < b[1].price ? 1 : -1));
       setSortingStatus("desc");
     }
     setCards(sortedCards);
@@ -186,100 +182,37 @@ export default function App(props) {
 
   let total = 0;
   beersInOrder.forEach((oneOrder) => {
-    const isBeerInOrder = beersArray.filter(
-      (beer) => beer[0] === oneOrder.name
-    );
+    const isBeerInOrder = beersArray.filter((beer) => beer[0] === oneOrder.name);
 
     let price = parseInt(isBeerInOrder[0][1].price);
     total += price * oneOrder.amount;
   });
 
-  cardsInUse = cards.map((c) => (
-    <Card
-      {...c}
-      key={c[0]}
-      addBeerToOrder={addBeerToOrder}
-      isCheckingOut={isCheckingOut}
-      orderConfirmed={orderConfirmed}
-    />
-  ));
+  cardsInUse = cards.map((c) => <Card {...c} key={c[0]} addBeerToOrder={addBeerToOrder} isCheckingOut={isCheckingOut} orderConfirmed={orderConfirmed} />);
 
   return (
     <div className={showFrontpage ? "App frontpage-shown" : "App"}>
-      <Frontpage
-        className="visible"
-        addLastOrder={addLastOrder}
-        setAmount={setAmount}
-        setFrontpageStatus={setFrontpageStatus}
-      />
-      {orderConfirmed ? (
-        <></>
-      ) : (
-        <Header
-          isCheckingOut={isCheckingOut}
-          isPaying={isPaying}
-          cancelOrder={cancelOrder}
-          cancelPayment={cancelPayment}
-          cancelPaymentMethod={cancelPaymentMethod}
-          paymentMethod={paymentMethod}
-        />
-      )}
+      <Frontpage className="visible" addLastOrder={addLastOrder} setAmount={setAmount} setFrontpageStatus={setFrontpageStatus} />
+      {orderConfirmed ? <></> : <Header isCheckingOut={isCheckingOut} isPaying={isPaying} cancelOrder={cancelOrder} cancelPayment={cancelPayment} cancelPaymentMethod={cancelPaymentMethod} paymentMethod={paymentMethod} />}
       <main>
         {orderConfirmed ? (
-          <OrderConfirmation
-            orderNumber={orderNumber}
-            cards={cardsInUse}
-            total={total}
-            cardInformation={cardInformation}
-          />
+          <OrderConfirmation orderNumber={orderNumber} cards={cardsInUse} total={total} cardInformation={cardInformation} />
         ) : isPaying ? (
-          <Payment
-            postOrder={postOrder}
-            setPayment={setPayment}
-            paymentMethod={paymentMethod}
-            setCardInformation={setCardInformation}
-          />
+          <Payment postOrder={postOrder} setPayment={setPayment} paymentMethod={paymentMethod} setCardInformation={setCardInformation} />
         ) : isCheckingOut ? (
           <Checkout cards={cardsInUse} />
         ) : (
           <>
             <h1 className="main-title">ON TAP TODAY</h1>
-            <div>
-              <Button
-                className="button-price"
-                name={
-                  sortingStatus === null
-                    ? "PRICE"
-                    : sortingStatus === "asc"
-                    ? "PRICE ↑"
-                    : "PRICE ↓"
-                }
-                callback={sortByPrice}
-              />
-              <Button
-                className="button-popular"
-                name={filterStatus ? "ALL" : "POPULAR"}
-                callback={filterPopular}
-              />
+            <div className="sortingButtons">
+              <Button className="button-price" name={sortingStatus === null ? "PRICE" : sortingStatus === "asc" ? "PRICE ↑" : "PRICE ↓"} callback={sortByPrice} />
+              <Button className="button-popular" name={filterStatus ? "ALL" : "POPULAR"} callback={filterPopular} />
             </div>
             {cardsInUse}
           </>
         )}
 
-        {isPaying ? (
-          <></>
-        ) : beersInOrder.length > 0 ? (
-          <OrderSummary
-            beersInOrder={beersInOrder}
-            beerInfo={beersArray}
-            goToOrder={goToOrder}
-            goToPayment={goToPayment}
-            isCheckingOut={isCheckingOut}
-            total={total}
-          />
-        ) : (
-          <></>
-        )}
+        {isPaying ? <></> : beersInOrder.length > 0 ? <OrderSummary beersInOrder={beersInOrder} beerInfo={beersArray} goToOrder={goToOrder} goToPayment={goToPayment} isCheckingOut={isCheckingOut} total={total} /> : <></>}
       </main>
     </div>
   );

@@ -18,40 +18,26 @@ export default function CreditCardForm(props) {
 
   return (
     <>
-      <img src={creditCards} alt="Credit Cards" />
-      <form action="">
+      <img className="cards-img" src={creditCards} alt="Credit Cards" />
+      <form className="card-form" action="">
         <label htmlFor="card-name">
           Name on Card
-          <input
-            onChange={(e) => setName(e.target.value)}
-            id="card-name"
-            type="text"
-          />
+          <input onChange={(e) => setName(e.target.value)} id="card-name" type="text" />
         </label>
         <label htmlFor="card-number">
           Card Number
-          <input
-            onChange={(e) => setCardNumber(e.target.value)}
-            id="card-number"
-            type="text"
-          />
+          <input onChange={(e) => setCardNumber(e.target.value)} id="card-number" type="text" />
         </label>
         <label htmlFor="expiry-date">
           {" "}
           Expiry Date
-          <input id="expiry-date" type="text" />
+          <input placeholder="MM/YY" id="expiry-date" type="text" />
         </label>
         <label htmlFor="security-code">
           Security Code
           <input id="security-code" type="text" />
         </label>
-        <input
-          onClick={confirmOrder}
-          type="submit"
-          name="submit"
-          id="submit"
-          value="CONFIRM"
-        />
+        <input onClick={confirmOrder} type="submit" name="submit" id="submit" value="PAY" />
       </form>
     </>
   );

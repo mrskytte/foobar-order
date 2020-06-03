@@ -4,9 +4,7 @@ export default function Checkout(props) {
   const [emptyBasket, setEmptyBasket] = useState("");
 
   useEffect(() => {
-    setEmptyBasket(
-      props.cards.filter((card) => card.props[1].amount > 0).length < 1
-    );
+    setEmptyBasket(props.cards.filter((card) => card.props[1].amount > 0).length < 1);
   }, [props.cards]);
 
   return (
@@ -19,16 +17,16 @@ export default function Checkout(props) {
         </>
       ) : (
         <>
-          <h1>ORDER SUMMARY</h1>
+          <h1 className="order-summary">ORDER SUMMARY</h1>
           <table>
-            <thead>
-              <tr>
+            <thead className="thead">
+              <tr className="summary-item-list">
                 <th className="summary-item">Item</th>
                 <th className="summary-price">Price</th>
                 <th className="summary-amount">Amount</th>
               </tr>
             </thead>
-            <tbody>{props.cards}</tbody>
+            <tbody className="tbody">{props.cards}</tbody>
           </table>
         </>
       )}
