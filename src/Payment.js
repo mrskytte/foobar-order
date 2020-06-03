@@ -1,4 +1,5 @@
 import React from "react";
+
 import CreditCardForm from "./CreditCardForm";
 import creditCards from "./assets/imgs/creditcards.png";
 import applePay from "./assets/imgs/applepay.png";

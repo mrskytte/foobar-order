@@ -373,6 +373,15 @@ img.ticket {
   height: 100vh;
   overflow: hidden;
 }
+// cardjs
+
+.valid {
+  outline: 4px solid green;
+}
+
+.invalid {
+  outline: 4px solid red;
+
 .checkout,
 .payment-method,
 .card-details {
