@@ -11,9 +11,7 @@ export default function OrderConfirmation(props) {
     return tickets;
   }
 
-  const tickets = importAll(
-    require.context("./assets/tickets_withhand", true, /\.png/)
-  );
+  const tickets = importAll(require.context("./assets/tickets_withhand", true, /\.png/));
 
   function setViewOrder() {
     setView(!viewOrder);
@@ -23,7 +21,7 @@ export default function OrderConfirmation(props) {
     <>
       {viewOrder ? (
         <>
-          <h1>ORDER SUMMARY</h1>
+          <h1 className="final-summary">ORDER SUMMARY</h1>
           <table>
             <thead>
               <tr>
@@ -34,36 +32,29 @@ export default function OrderConfirmation(props) {
             </thead>
             <tbody>{props.cards}</tbody>
           </table>
-          <h4>
-            Total Amount:<span> {props.total}</span>
+          <h4 className="total-summary">
+            Total Amount:<span> {props.total},00kr</span>
           </h4>
           <div className="payment-details">
             <h4>Payment Details</h4>
             <p className="confirmation-name">{props.cardInformation.name}</p>
-            <p className="confirmation-number">
-              {props.cardInformation.number}
-            </p>
+            <p className="confirmation-number">{props.cardInformation.number}</p>
           </div>
         </>
       ) : (
         <>
-          <h1>We got your order!</h1>
-          <h2>
+          <h1 className="got-order">We got your order!</h1>
+          <h2 className="got-order-sub">
             Your order number is
-            <span> {props.orderNumber}</span>
+            <span className="order-nr"> {props.orderNumber}</span>
           </h2>
-          <p>
-            Keep an eye on the dashboard - once your number reaches one of our
-            bartenders - go ahead and grab your drinks at the bar!
-          </p>
-          <img
-            className="ticket"
-            src={tickets[`ticket_${props.orderNumber}.png`]}
-            alt="Your order number"
-          />
+          <p className="confirmation-text">Keep an eye on the dashboard - once your number reaches one of our bartenders - go ahead and grab your drinks at the bar!</p>
+          <img className="ticket" src={tickets[`ticket_${props.orderNumber}.png`]} alt="Your order number" />
         </>
       )}
-      <button onClick={setViewOrder}>VIEW ORDER</button>
+      <button id="view-order" onClick={setViewOrder}>
+        VIEW ORDER
+      </button>
     </>
   );
 }

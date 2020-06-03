@@ -57,13 +57,13 @@ export default function Card(props) {
   return (
     <>
       {props.isCheckingOut && beerInfo.amount > 0 ? (
-        <tr>
-          <td>{beerInfo.name}</td>
-          <td>{beerInfo.price}</td>
+        <tr className="tbody">
+          <td className="beer-name-table">{beerInfo.name}</td>
+          <td className="beer-price-table">{beerInfo.price},00kr</td>
           {props.orderConfirmed ? (
             <td>{beerInfo.amount}</td>
           ) : (
-            <td>
+            <td className="beer-amount-table">
               <AddButton changeAmount={changeAmount} amount={beerInfo.amount} />
             </td>
           )}
@@ -72,9 +72,6 @@ export default function Card(props) {
         console.log("show nothing")
       ) : (
         <article id={beerInfo.name} className={myClassNames} onClick={open ? console.log("no") : () => setOpen(true)}>
-          <div className="number-of-beers">
-            <p>{beerInfo.amount} x </p>
-          </div>
           <button
             class="close-beer-button"
             onClick={() => {

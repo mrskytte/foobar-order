@@ -198,7 +198,7 @@ export default function App(props) {
         ) : (
           <>
             <h1 className="main-title">ON TAP TODAY</h1>
-            <div>
+            <div className="sortingButtons">
               <Button className="button-price" name={sortingStatus === null ? "PRICE" : sortingStatus === "asc" ? "PRICE ↑" : "PRICE ↓"} callback={sortByPrice} />
               <Button className="button-popular" name={filterStatus ? "ALL" : "POPULAR"} callback={filterPopular} />
             </div>

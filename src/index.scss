@@ -6,6 +6,7 @@ body {
   *:focus {
     outline: 0;
   }
+  overflow-y: scroll;
 }
 
 code {
@@ -31,16 +32,16 @@ header {
 }
 
 .card-element {
-  border: 1px solid white;
   display: grid;
   grid-template-areas:
-    "numberofbeer img title"
-    "numberofbeer img alc"
-    "numberofbeer img price";
-  grid-template-columns: 10% 1fr 1fr;
+    "img title"
+    "img alc"
+    "img price";
+  grid-template-columns: 1fr 1fr;
   img {
     grid-area: img;
-    width: 90%;
+    width: 80%;
+    margin-left: 10%;
   }
   .number-of-beers {
     visibility: hidden;
@@ -86,9 +87,10 @@ header {
     .add-beer {
       justify-content: center;
       grid-column: 2/3;
-      display: inline-flex;
+      display: flex;
       margin-top: 1em;
       grid-row: 6/7;
+      margin-bottom: 1em;
     }
     .desc {
       grid-area: desc;
@@ -128,10 +130,14 @@ header {
       font-size: 30px;
       color: #f0621f;
       margin-left: 2em;
+      margin-top: 2em;
     }
   }
 }
 
+.add-beer {
+  display: flex;
+}
 @keyframes openMenu {
   from {
     opacity: 0;
@@ -154,7 +160,8 @@ header {
   }
 }
 
-#order-summary {
+#order-summary,
+#view-order {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -175,7 +182,9 @@ form label {
 }
 
 img.ticket {
-  width: 60%;
+  width: 50%;
+  margin-right: 25%;
+  margin-left: 25%;
 }
 @font-face {
   font-family: "Montserrat-R";
@@ -196,7 +205,7 @@ img.ticket {
   font-family: "Montserrat-R";
   color: #2a2723;
   margin-left: 2em;
-  margin-right: 1em;
+  margin-right: 1.5em;
   line-height: 1.5em;
   font-size: 16px;
   margin-top: 0;
@@ -227,19 +236,31 @@ img.ticket {
 }
 
 .main-title,
-.order-summary {
+.order-summary,
+.final-summary {
   font-family: "Montserrat-B";
   font-size: 24px;
   margin-left: 1em;
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 .button-price,
 .button-popular {
   font-family: "Montserrat-B";
   background-color: #fefefe;
-  box-shadow: 0px -1px 21px -8px rgba(0, 0, 0, 0.75);
   margin-top: 1em;
+  width: 30%;
+  height: 10%;
+  font-size: 16px;
+  border: 1px solid #2a2723;
+}
+
+.button-price:focus {
+  border: 2px solid #f0621f;
+}
+
+.button-popular:focus {
+  border: 2px solid #f0621f;
 }
 
 .add-beer > .minus,
@@ -262,7 +283,9 @@ img.ticket {
   font-size: 18px;
 }
 
-#order-summary {
+#order-summary,
+#view-order,
+#submit {
   background-color: #2a2723;
   color: #fefefe;
   font-size: 16px;
@@ -287,4 +310,377 @@ img.ticket {
 
 .close-beer-button {
   display: none;
+}
+
+.checkout,
+.payment-method,
+.card-details {
+  color: #fefefe;
+  font-family: "Montserrat-B";
+  font-size: 24px;
+  text-align: center;
+  position: absolute;
+  margin-left: 3em;
+}
+
+.back-btn {
+  color: #fefefe;
+  background: none;
+  border: none;
+  font-size: 40px;
+  padding: 0;
+  font-family: "Montserrat-B";
+  margin-left: 0.5em;
+  position: absolute;
+}
+
+ul li {
+  list-style-type: none;
+  text-align: left;
+}
+
+.sortingButtons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+table,
+.tbody {
+  justify-content: center;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2em;
+}
+
+.tbody {
+  justify-content: center;
+  text-align: center;
+}
+
+table th {
+  padding: 1em;
+  padding-bottom: 2em;
+}
+
+.beer-name-table {
+  font-family: "Montserrat-R";
+  padding: 0;
+  margin: 0;
+  width: 30%;
+  text-align: center;
+}
+
+.beer-price-table {
+  width: 20%;
+  font-family: "Montserrat-R";
+}
+
+.beer-amount-table {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.card-form > label {
+  font-family: "Montserrat-B";
+  padding: 0.5em;
+}
+
+.card-form {
+  width: 90%;
+}
+
+.card-form > label {
+  margin-left: 1em;
+  font-family: "Montserrat-R";
+  padding: 1em;
+}
+
+#card-name,
+#card-number,
+#expiry-date,
+#security-code {
+  height: 30px;
+  border-radius: 8px;
+  font-family: "Montserrat-R";
+  font-size: 16px;
+  border: solid 1px black;
+}
+
+.cards-img {
+  width: 50%;
+  margin-left: 1.5em;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 5%;
+}
+
+#security-code,
+#expiry-date {
+  width: 30%;
+}
+
+#card-name,
+#card-number {
+  width: 90%;
+}
+
+#submit {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10vh;
+}
+
+.got-order {
+  font-family: "Montserrat-B";
+  text-align: left;
+  color: #f0621f;
+  font-size: 30px;
+  margin-top: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.got-order-sub {
+  text-align: left;
+  font-family: "Montserrat-B";
+  margin-left: 1.5em;
+  margin-right: 2em;
+  font-size: 20px;
+}
+
+.confirmation-text {
+  font-family: "Montserrat-R";
+  font-size: 16px;
+  text-align: left;
+  margin-left: 2em;
+  margin-right: 2em;
+  line-height: 1.5em;
+  margin-bottom: 2em;
+}
+
+.total-summary {
+  text-align: right;
+  margin-right: 10%;
+  margin-top: 10%;
+}
+
+.payment-details {
+  margin-left: 10%;
+  margin-top: 4em;
+}
+
+.order-nr {
+  color: #f0621f;
+}
+
+.mobilepay,
+.applepay,
+.creditcard {
+  width: 130px;
+}
+
+.mobilepay-btn,
+.applepay-btn,
+.creditcard-btn {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  width: 80%;
+  height: 100px;
+  border-radius: 8px;
+  border: 1px solid #2a2723;
+  background: none;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.mobilepay-btn {
+  margin-top: 4em;
+}
+
+@media only screen and (min-width: 700px) {
+  .card-element {
+    img {
+      grid-area: img;
+      width: 60%;
+      margin-left: 20%;
+    }
+    &.open-menu {
+      img {
+        margin: auto;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        margin-top: 0;
+        animation: openImg 0.5s ease forwards;
+        width: 40%;
+      }
+      .beername {
+        grid-column: 1/3;
+        grid-row: 3/4;
+        margin-left: 2em;
+        font-size: 30px;
+        margin-top: 0;
+      }
+      .alc {
+        grid-column: 1/3;
+        grid-row: 4/5;
+        margin-left: 2.5em;
+        margin-top: 2em;
+      }
+      .price {
+        margin-left: 2em;
+        font-size: 30px;
+        margin-top: 1em;
+      }
+      .close-beer-button {
+        display: block;
+        grid-column: 2/3;
+        padding: 0;
+        margin: 0;
+        background: none;
+        border: none;
+        font-size: 30px;
+        color: #f0621f;
+        margin-left: 2em;
+        margin-top: 2em;
+      }
+    }
+  }
+  .beername {
+    font-size: 30px;
+    margin-left: 20%;
+  }
+  .price {
+    font-size: 30px;
+    margin-left: 20%;
+  }
+  .alc {
+    font-size: 24px;
+    margin-left: 20%;
+  }
+  @keyframes openImg {
+    from {
+      transform: translateX(-50%);
+      width: 40%;
+    }
+    to {
+      transform: translateX(0);
+      width: 40%;
+    }
+  }
+  .desc {
+    margin-left: 4em;
+    margin-right: 4em;
+    line-height: 1.8em;
+    font-size: 16px;
+    margin-top: 0;
+  }
+  .add-beer > .minus,
+  .plus {
+    margin: 1em;
+    background-color: #f0621f;
+    font-family: "Montserrat-B";
+    font-size: 20px;
+    border-radius: 100%;
+    height: 2em;
+    width: 2em;
+    text-align: center;
+    padding: 0.3em;
+    border: 1px solid #2a2723;
+  }
+  .add-beer {
+    margin-left: 1em;
+  }
+  .beer-amount {
+    font-size: 25px;
+  }
+  #order-summary,
+  #view-order,
+  #submit {
+    font-size: 20px;
+  }
+  .total {
+    font-size: 20px;
+  }
+  .checkout,
+  .payment-method,
+  .card-details {
+    font-size: 28px;
+    margin-top: 1em;
+  }
+  .back-btn {
+    margin-top: 0.5em;
+  }
+  .thead th {
+    font-size: 24px;
+  }
+  .tbody {
+    font-size: 20px;
+  }
+  .cards-img {
+    width: 30%;
+  }
+  img.ticket {
+    width: 40%;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+
+  .got-order {
+    font-family: "Montserrat-B";
+    text-align: left;
+    color: #f0621f;
+    font-size: 40px;
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  .got-order-sub {
+    text-align: left;
+    font-family: "Montserrat-B";
+    margin-left: 1.5em;
+    margin-right: 3em;
+    font-size: 30px;
+  }
+
+  .confirmation-text {
+    font-family: "Montserrat-R";
+    font-size: 20px;
+    text-align: left;
+    margin-left: 2em;
+    margin-right: 3em;
+    line-height: 1.8em;
+    margin-bottom: 3em;
+  }
+}
+
+@media (orientation: landscape) {
+  header {
+    height: 16vh;
+  }
+  #order-summary,
+  #view-order,
+  #submit {
+    height: 18vh;
+  }
+  .checkout,
+  .payment-method,
+  .card-details {
+    font-size: 24px;
+    margin-top: 0.8em;
+  }
+  .back-btn {
+    margin-top: 0.2em;
+  }
+  img.ticket {
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+  }
 }
