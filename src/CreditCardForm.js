@@ -11,6 +11,7 @@ export default function CreditCardForm(props) {
   const [cardValidity, setCardValidity] = useState("");
   const [expireValidity, setExpireValidity] = useState("");
   const [cvcValidity, setCvcValidity] = useState("");
+  const [paying, setPaying] = useState(false);
   const [readyToSubmit, setSubmitState] = useState("false");
 
   function storeCardInformation() {
@@ -19,17 +20,26 @@ export default function CreditCardForm(props) {
   }
 
   function confirmOrder(event) {
+    console.log("pay");
+    setPaying(true);
     event.preventDefault();
     if (readyToSubmit) {
       props.postOrder();
       storeCardInformation();
+    } else {
+      checkValidity();
+      setPaying(false);
     }
   }
 
   useEffect(() => {
+    checkValidity();
+  }, [nameOnCard, cardNumber, cvcNumber, expirationDate]);
+
+  function checkValidity() {
     if (nameOnCard.length > 1) {
       setNameValidity(true);
-    } else if (nameOnCard !== "") {
+    } else if (nameOnCard !== "" || paying) {
       setNameValidity(false);
     } else {
       setNameValidity("");
@@ -39,6 +49,8 @@ export default function CreditCardForm(props) {
       setCardValidity(false);
     } else if (is.creditCard(cardNumber.replace(/\s/g, ""))) {
       setCardValidity(true);
+    } else if (paying) {
+      setCardValidity(false);
     } else {
       setCardValidity("");
     }
@@ -47,6 +59,8 @@ export default function CreditCardForm(props) {
       setCvcValidity(false);
     } else if (is.truthy(RegExp(/^[0-9]{3,4}$/).test(cvcNumber))) {
       setCvcValidity(true);
+    } else if (paying) {
+      setCvcValidity(false);
     } else {
       setCvcValidity("");
     }
@@ -64,10 +78,12 @@ export default function CreditCardForm(props) {
       )
     ) {
       setExpireValidity(true);
+    } else if (paying) {
+      setExpireValidity(false);
     } else {
       setExpireValidity("");
     }
-  }, [nameOnCard, cardNumber, cvcNumber, expirationDate]);
+  }
 
   useEffect(() => {
     if (nameValidity && cardValidity && cvcValidity && expireValidity) {
@@ -79,7 +95,6 @@ export default function CreditCardForm(props) {
 
   return (
     <>
-
       <div id="card-wrapper"></div>
 
       {/* SOURCE: https://github.com/shatran/card-react  */}
@@ -99,20 +114,8 @@ export default function CreditCardForm(props) {
         }}
         formatting={true} // optional - default true
       >
-        <form>
-          <label htmlFor="CCname">
-            Full Name
-            <input
-              id="CCname"
-              type="text"
-              name="CCname"
-              onChange={(e) => setName(e.target.value)}
-              className={
-                nameValidity === "" ? "" : nameValidity ? "valid" : "invalid"
-              }
-            />
-          </label>
-          <label htmlFor="CCnumber">
+        <form className="card-form">
+          <label id="card-number" htmlFor="CCnumber">
             Credit Card Number
             <input
               id="CCnumber"
@@ -124,7 +127,19 @@ export default function CreditCardForm(props) {
               }
             />
           </label>
-          <label htmlFor="CCexpiry">
+          <label id="card-name" htmlFor="CCname">
+            Full Name
+            <input
+              id="CCname"
+              type="text"
+              name="CCname"
+              onChange={(e) => setName(e.target.value)}
+              className={
+                nameValidity === "" ? "" : nameValidity ? "valid" : "invalid"
+              }
+            />
+          </label>
+          <label id="expiry-date" htmlFor="CCexpiry">
             Expiry Date
             <input
               id="CCexpiry"
@@ -140,7 +155,7 @@ export default function CreditCardForm(props) {
               }
             />
           </label>
-          <label htmlFor="CCcvc">
+          <label id="security-code" htmlFor="CCcvc">
             Security Number
             <input
               id="CCcvc"
@@ -157,12 +172,11 @@ export default function CreditCardForm(props) {
             type="submit"
             name="submit"
             id="submit"
-            value="CONFIRM"
+            value="PAY"
           />
         </form>
       </CardReactFormContainer>
-      <img className="cards-img" src={creditCards} alt="Credit Cards" />
-      <form className="card-form" action="">
+      {/* <form className="card-form" action="">
         <label htmlFor="card-name">
           Name on Card
           <input onChange={(e) => setName(e.target.value)} id="card-name" type="text" />
@@ -181,7 +195,7 @@ export default function CreditCardForm(props) {
           <input id="security-code" type="text" />
         </label>
         <input onClick={confirmOrder} type="submit" name="submit" id="submit" value="PAY" />
-      </form>
+      </form> */}
     </>
   );
 }
