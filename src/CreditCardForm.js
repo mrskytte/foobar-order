@@ -32,9 +32,9 @@ export default function CreditCardForm(props) {
     }
   }
 
-  useEffect(() => {
-    checkValidity();
-  }, [nameOnCard, cardNumber, cvcNumber, expirationDate]);
+  // useEffect(() => {
+  //   checkValidity();
+  // }, [nameOnCard, cardNumber, cvcNumber, expirationDate]);
 
   function checkValidity() {
     if (nameOnCard.length > 1) {
@@ -115,7 +115,7 @@ export default function CreditCardForm(props) {
         formatting={true} // optional - default true
       >
         <form className="card-form">
-          <label id="card-number" htmlFor="CCnumber">
+          <label id="card-number" htmlFor="CCnumber" onBlur={checkValidity}>
             Credit Card Number
             <input
               id="CCnumber"
@@ -127,7 +127,7 @@ export default function CreditCardForm(props) {
               }
             />
           </label>
-          <label id="card-name" htmlFor="CCname">
+          <label id="card-name" htmlFor="CCname" onBlur={checkValidity}>
             Full Name
             <input
               id="CCname"
@@ -139,7 +139,7 @@ export default function CreditCardForm(props) {
               }
             />
           </label>
-          <label id="expiry-date" htmlFor="CCexpiry">
+          <label id="expiry-date" htmlFor="CCexpiry" onBlur={checkValidity}>
             Expiry Date
             <input
               id="CCexpiry"
@@ -155,7 +155,7 @@ export default function CreditCardForm(props) {
               }
             />
           </label>
-          <label id="security-code" htmlFor="CCcvc">
+          <label id="security-code" htmlFor="CCcvc" onBlur={checkValidity}>
             Security Number
             <input
               id="CCcvc"
