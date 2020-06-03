@@ -30,21 +30,26 @@ export default function Frontpage(props) {
     <div id="frontpage" className={loadDone ? "hidden" : "visible"}>
       {lastOrder ? (
         <>
-          <h1>HEY AGAIN</h1>
-          <h2>WELCOME BACK TO FOOBAR</h2>
-          <button onClick={addLastOrder}>REPEAT LAST ROUND?</button>
-          <button
-            onClick={() => {
-              setLoadStatus(true);
-              props.setFrontpageStatus(false);
-            }}
-          >
-            VIEW MENU
-          </button>
+          <h1>HEY AGAIN!</h1>
+          <h2>
+            WELCOME BACK TO FOOBAR, WANT ANOTHER ROUND OR CHECK OUT THE MENU
+            AGAIN?
+          </h2>
+          <div id="frontpage-buttons">
+            <button onClick={addLastOrder}>REPEAT LAST ROUND?</button>
+            <button
+              onClick={() => {
+                setLoadStatus(true);
+                props.setFrontpageStatus(false);
+              }}
+            >
+              VIEW MENU
+            </button>
+          </div>
         </>
       ) : (
         <>
-          <h1>HEY THERE</h1>
+          <h1>HEY THERE!</h1>
           <h2>WELCOME TO FOOBAR</h2>
           <div id="loader">
             <Anime

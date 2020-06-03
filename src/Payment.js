@@ -9,26 +9,38 @@ export default function Payment(props) {
   return (
     <>
       {props.paymentMethod === "creditCard" ? (
-        <CreditCardForm postOrder={props.postOrder} setCardInformation={props.setCardInformation} />
-      ) : props.paymentMethod === "mobilePay" ? (
-        console.log("mobilePay")
-      ) : props.paymentMethod === "ApplePay" ? (
-        console.log("applePay")
+        <CreditCardForm
+          postOrder={props.postOrder}
+          setCardInformation={props.setCardInformation}
+        />
       ) : (
         <ul className="payment-options">
           <li>
-            <button className="mobilepay-btn" onClick={() => props.setPayment("mobilePay")}>
+            <button
+              className="mobilepay-btn"
+              // onClick={() => props.setPayment("mobilePay")}
+            >
               <img className="mobilepay" src={mobilePay} alt="Mobile Pay" />
             </button>
           </li>
           <li>
-            <button className="applepay-btn " onClick={() => props.setPayment("applePay")}>
+            <button
+              className="applepay-btn "
+              // onClick={() => props.setPayment("applePay")}
+            >
               <img className="applepay" src={applePay} alt="Apple Pay" />
             </button>
           </li>
           <li>
-            <button className="creditcard-btn" onClick={() => props.setPayment("creditCard")}>
-              <img className="creditcard" src={creditCards} alt="Credit Cards" />
+            <button
+              className="creditcard-btn"
+              onClick={() => props.setPayment("creditCard")}
+            >
+              <img
+                className="creditcard"
+                src={creditCards}
+                alt="Credit Cards"
+              />
             </button>
           </li>
         </ul>

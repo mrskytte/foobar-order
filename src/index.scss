@@ -19,13 +19,15 @@ $bold-font: "Montserrat-B", Arial, Helvetica, sans-serif;
 }
 
 header {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 12vh;
   background-color: $secondary-color;
   img {
-    height: 80%;
+    height: 70%;
     margin-top: 0.5em;
     margin-left: 0.5em;
   }
@@ -62,8 +64,7 @@ header {
       "alc alc"
       "desc desc"
       "price addbeer";
-    .desc,
-    .add-beer {
+    .desc {
       display: inline;
       animation: openMenu 1s ease-in forwards;
     }
@@ -184,7 +185,7 @@ img.ticket {
 
 .desc {
   font-family: $regular-font;
-  color: #2a2723;
+  color: $secondary-color;
   margin-left: 2em;
   margin-right: 1.5em;
   line-height: 1.5em;
@@ -201,7 +202,7 @@ img.ticket {
 
 .beername {
   font-family: $bold-font;
-  color: #2a2723;
+  color: $secondary-color;
   font-size: 20px;
   margin-top: 3em;
   padding: 0;
@@ -211,7 +212,7 @@ img.ticket {
 
 .alc {
   font-family: $bold-font;
-  color: #2a2723;
+  color: $secondary-color;
   font-size: 16px;
   margin-top: 0;
 }
@@ -256,7 +257,7 @@ img.ticket {
   width: 2em;
   text-align: center;
   padding: 0.3em;
-  border: 1px solid #2a2723;
+  border: 1px solid $secondary-color;
 }
 
 .beer-amount {
@@ -267,7 +268,7 @@ img.ticket {
 #order-summary,
 #view-order,
 #submit {
-  background-color: #2a2723;
+  background-color: $secondary-color;
   color: $primaty-color;
   font-size: 16px;
   font-family: $bold-font;
@@ -299,24 +300,37 @@ img.ticket {
   position: absolute;
   height: 100vh;
   width: 100vw;
-  z-index: 1000;
-  background-color: $primaty-color;
-  padding: 1em;
-  padding-top: 6em;
-  text-align: center;
+  z-index: 1;
+  background-color: #fefefe;
+  padding: 6em 1em 10em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   h1 {
+    padding: 4em 1em 0em;
+
+    font-family: $bold-font;
     color: $accent;
     font-size: 28px;
   }
   h2 {
-    padding: 1em 1.5em 2em 1.5em;
+    padding: 1em 0em 2em 1.5em;
     font-size: 20px;
   }
+  #frontpage-buttons {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
   button {
-    margin-top: 6em;
     font-family: $bold-font;
     background-color: $primaty-color;
-    box-shadow: 0px -1px 10px -8px rgba(0, 0, 0, 0.75);
+    width: 40%;
+    height: 100%;
+    font-size: 16px;
+    border: 1px solid $secondary-color;
   }
   &.hidden {
     animation: hideFrontpage 1s ease-out forwards;
@@ -385,7 +399,7 @@ img.ticket {
     width: 60%;
     height: 20%;
     font-size: 16px;
-    border: 1px solid #2a2723;
+    border: 1px solid $secondary-color;
     margin: auto;
   }
 }
@@ -585,7 +599,7 @@ table th {
   width: 80%;
   height: 100px;
   border-radius: 8px;
-  border: 1px solid #2a2723;
+  border: 1px solid $secondary-color;
   background: none;
   margin-left: 5%;
   margin-right: 5%;
@@ -683,7 +697,7 @@ table th {
     width: 2em;
     text-align: center;
     padding: 0.3em;
-    border: 1px solid #2a2723;
+    border: 1px solid $secondary-color;
   }
   .add-beer {
     margin-left: 1em;
