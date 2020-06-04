@@ -20,7 +20,6 @@ export default function CreditCardForm(props) {
   }
 
   function confirmOrder(event) {
-    console.log("pay");
     setPaying(true);
     event.preventDefault();
     if (readyToSubmit) {
@@ -31,10 +30,6 @@ export default function CreditCardForm(props) {
       setPaying(false);
     }
   }
-
-  // useEffect(() => {
-  //   checkValidity();
-  // }, [nameOnCard, cardNumber, cvcNumber, expirationDate]);
 
   function checkValidity() {
     if (nameOnCard.length > 1) {

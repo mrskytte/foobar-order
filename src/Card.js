@@ -70,7 +70,7 @@ export default function Card(props) {
           )}
         </tr>
       ) : props.isCheckingOut ? (
-        console.log("show nothing")
+        <></>
       ) : (
         <article
           id={beerInfo.name}

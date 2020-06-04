@@ -165,7 +165,6 @@ export default function App(props) {
       body: postData,
     });
     const response = await posting.json();
-    console.log("response", response);
     handleOrderNumber(response.id);
   }
 
@@ -179,10 +178,7 @@ export default function App(props) {
     }
     setOrderNumber(orderId);
     setOrderStatus(true);
-    console.log("orderID", orderId);
   }
-
-  console.log(beersInOrder);
 
   let total = 0;
   beersInOrder.forEach((oneOrder) => {
