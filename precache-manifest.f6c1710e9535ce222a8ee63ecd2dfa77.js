@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "22c2808a9f5829f87f949ba6ec06ab93",
+    "revision": "bc89a887d74bdb017ac204faa783e72a",
     "url": "/foobar-order/index.html"
   },
   {
-    "revision": "8e709e61490a9c450869",
-    "url": "/foobar-order/static/css/main.44e145d1.chunk.css"
+    "revision": "82006fc5bae8e7871908",
+    "url": "/foobar-order/static/css/main.1c5d6c33.chunk.css"
   },
   {
     "revision": "de3f903164daca7c99c4",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/foobar-order/static/js/2.5bdac0e9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8e709e61490a9c450869",
-    "url": "/foobar-order/static/js/main.ae3d0e76.chunk.js"
+    "revision": "82006fc5bae8e7871908",
+    "url": "/foobar-order/static/js/main.a3bdde32.chunk.js"
   },
   {
     "revision": "fba6d559895f47ccabfe",
