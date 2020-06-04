@@ -476,7 +476,7 @@ table th {
   margin: auto;
   margin-top: 10%;
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 2fr 3fr 1fr;
   grid-template-areas:
     "cardNumber cardNumber cardNumber"
     "cardName cardName cardName"
@@ -516,6 +516,9 @@ table th {
 }
 #security-code {
   grid-area: cvc;
+  input {
+    width: 40%;
+  }
 }
 
 .cards-img {

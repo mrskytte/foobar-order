@@ -7,12 +7,14 @@ export default function CreditCardForm(props) {
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExDate] = useState("");
   const [cvcNumber, setCvcNumber] = useState("");
+
   const [nameValidity, setNameValidity] = useState("");
   const [cardValidity, setCardValidity] = useState("");
   const [expireValidity, setExpireValidity] = useState("");
   const [cvcValidity, setCvcValidity] = useState("");
+
   const [paying, setPaying] = useState(false);
-  const [readyToSubmit, setSubmitState] = useState("false");
+  const [readyToSubmit, setSubmitState] = useState(false);
 
   function storeCardInformation() {
     const cardInformation = { name: nameOnCard, number: cardNumber };
@@ -27,18 +29,33 @@ export default function CreditCardForm(props) {
       storeCardInformation();
     } else {
       checkValidity();
-      setPaying(false);
     }
   }
 
+  useEffect(() => checkValidity(), [paying]);
+
+  useEffect(() => {
+    if (nameValidity && cardValidity && cvcValidity && expireValidity) {
+      setSubmitState(true);
+    } else {
+      setSubmitState(false);
+    }
+  }, [nameValidity, cardValidity, cvcValidity, expireValidity]);
+
   function checkValidity() {
+    // CHECK NAME
+
     if (nameOnCard.length > 1) {
       setNameValidity(true);
     } else if (nameOnCard !== "" || paying) {
+      console.log("active");
       setNameValidity(false);
     } else {
+      console.log("active 2");
       setNameValidity("");
     }
+
+    // CHECK CARD NUMBER
 
     if (cardNumber !== "" && is.not.creditCard(cardNumber.replace(/\s/g, ""))) {
       setCardValidity(false);
@@ -50,6 +67,8 @@ export default function CreditCardForm(props) {
       setCardValidity("");
     }
 
+    // CHECK CVC NUMBER
+
     if (cvcNumber !== "" && is.falsy(RegExp(/^[0-9]{3,4}$/).test(cvcNumber))) {
       setCvcValidity(false);
     } else if (is.truthy(RegExp(/^[0-9]{3,4}$/).test(cvcNumber))) {
@@ -59,6 +78,8 @@ export default function CreditCardForm(props) {
     } else {
       setCvcValidity("");
     }
+
+    // CHECK EXPIRATION DATE
 
     if (
       expirationDate !== "" &&
@@ -80,14 +101,6 @@ export default function CreditCardForm(props) {
     }
   }
 
-  useEffect(() => {
-    if (nameValidity && cardValidity && cvcValidity && expireValidity) {
-      setSubmitState(true);
-    } else {
-      setSubmitState(false);
-    }
-  }, [nameValidity, cardValidity, cvcValidity, expireValidity]);
-
   return (
     <>
       <div id="card-wrapper"></div>
@@ -107,7 +120,7 @@ export default function CreditCardForm(props) {
           expiry: "",
           name: "",
         }}
-        formatting={true} // optional - default true
+        formatting={true}
       >
         <form className="card-form">
           <label id="card-number" htmlFor="CCnumber" onBlur={checkValidity}>
@@ -171,26 +184,6 @@ export default function CreditCardForm(props) {
           />
         </form>
       </CardReactFormContainer>
-      {/* <form className="card-form" action="">
-        <label htmlFor="card-name">
-          Name on Card
-          <input onChange={(e) => setName(e.target.value)} id="card-name" type="text" />
-        </label>
-        <label htmlFor="card-number">
-          Card Number
-          <input onChange={(e) => setCardNumber(e.target.value)} id="card-number" type="text" />
-        </label>
-        <label htmlFor="expiry-date">
-          {" "}
-          Expiry Date
-          <input placeholder="MM/YY" id="expiry-date" type="text" />
-        </label>
-        <label htmlFor="security-code">
-          Security Code
-          <input id="security-code" type="text" />
-        </label>
-        <input onClick={confirmOrder} type="submit" name="submit" id="submit" value="PAY" />
-      </form> */}
     </>
   );
 }
