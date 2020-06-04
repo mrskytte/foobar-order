@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/foobar-order/static/css/main.44e145d1.chunk.css",
-    "main.js": "/foobar-order/static/js/main.6da915f0.chunk.js",
-    "main.js.map": "/foobar-order/static/js/main.6da915f0.chunk.js.map",
+    "main.js": "/foobar-order/static/js/main.20e7065f.chunk.js",
+    "main.js.map": "/foobar-order/static/js/main.20e7065f.chunk.js.map",
     "runtime-main.js": "/foobar-order/static/js/runtime-main.b48b5d15.js",
     "runtime-main.js.map": "/foobar-order/static/js/runtime-main.b48b5d15.js.map",
     "static/js/2.5bdac0e9.chunk.js": "/foobar-order/static/js/2.5bdac0e9.chunk.js",
     "static/js/2.5bdac0e9.chunk.js.map": "/foobar-order/static/js/2.5bdac0e9.chunk.js.map",
     "index.html": "/foobar-order/index.html",
-    "precache-manifest.20e522d9f321f6bc87a3e2527fee34bd.js": "/foobar-order/precache-manifest.20e522d9f321f6bc87a3e2527fee34bd.js",
+    "precache-manifest.cceb829017814db48f1fde2695f2912c.js": "/foobar-order/precache-manifest.cceb829017814db48f1fde2695f2912c.js",
     "service-worker.js": "/foobar-order/service-worker.js",
     "static/css/main.44e145d1.chunk.css.map": "/foobar-order/static/css/main.44e145d1.chunk.css.map",
     "static/js/2.5bdac0e9.chunk.js.LICENSE.txt": "/foobar-order/static/js/2.5bdac0e9.chunk.js.LICENSE.txt",
@@ -131,6 +131,6 @@
     "static/js/runtime-main.b48b5d15.js",
     "static/js/2.5bdac0e9.chunk.js",
     "static/css/main.44e145d1.chunk.css",
-    "static/js/main.6da915f0.chunk.js"
+    "static/js/main.20e7065f.chunk.js"
   ]
 }
